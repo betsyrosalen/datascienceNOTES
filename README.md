@@ -1,6 +1,6 @@
 # datasciencecoursera - NOTES
 
-# Words People Use When They Talk About Git
+## Git Vocabulary
 
 **Command Line:** The computer program we use to input Git commands. On a Mac, it’s called Terminal. On a PC, it’s a non-native program that you download when you download Git for the first time (we’ll do that in the next section). In both cases, you type text-based commands, known as prompts, into the screen, instead of using a mouse.
 
@@ -12,7 +12,7 @@
 
 **Branch:** How do multiple people work on a project at the same time without Git getting them confused? Usually, they “branch off” of the main project with their own versions full of changes they themselves have made. After they’re done, it’s time to “merge” that branch back with the “master,” the main directory of the project.
 
-# Git-Specific Commands
+## Git-Specific Terminal Commands
 
 `git init`: Initializes a new Git repository. Until you run this command inside a repository or directory, it’s just a regular folder. Only after you input this does it accept further Git commands.
 
@@ -36,15 +36,15 @@
 
 `git pull`: If you’re working on your local computer and want the most up-to-date version of your repository to work with, you “pull” the changes down from GitHub with this command.
 
-# Useful Terminal Commands
+## Useful Terminal Commands
 
-## Show Hidden Files in Finder
+### Show Hidden Files in Finder
 
 `defaults write com.apple.finder AppleShowAllFiles TRUE`
 
 `killall Finder`
 
-## Securely Erase Free Space
+### Securely Erase Free Space
 
 When you delete files on your Mac, OS X still leaves fragments of the file all over the free space on your hard disk drive, until these are written over by new files. If you want to securely delete all the remaining fragments on a hard disk drive (for example if you're going to sell your Mac), then execute the following command:
 
@@ -54,7 +54,7 @@ Replace /name-of-drive with the drive you want to erase. This command uses a spe
 
 On a side note, the command diskutil is a really useful one and allows you to manage local disks and volumes directly from the Terminal (a list of sample commands is given). Be aware, though, that most commands require root access.
 
-## Basic Terminal Commands
+### Basic Terminal Commands
 
 `cd`	Home directory
 
