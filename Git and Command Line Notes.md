@@ -16,20 +16,30 @@
 
 `git init`: Initializes a new Git repository _IN THE CURRENT DIRECTORY_. Make sure you create a directory and navigate to it before this step.  Until you run this command inside a repository or directory, it’s just a regular folder. Only after you input this does it accept further Git commands.
 
-`git config`: Short for “configure,” this is most useful when you’re setting up Git for the first time.  Example: `git config --global user.name "Betsy"`, `git config --global user.email betsy@mylittleuniverse.com`, `git config --global color.ui true` (Pretty command line colors)
+`git config`: Short for “configure,” this is most useful when you’re setting up Git for the first time.  
 
-`git help`: Forgot a command? Type this into the command line to bring up the 21 most common git commands. You can also be more specific and type “git help init” or another term to figure out how to use and configure a specific git command.  You can add the specific ommand you need help with after the word help.  Examples: `git help add`, `git help config`, `git help commit`, etc...
+Examples: 
+
+- `git config --global user.name "Betsy"`
+- `git config --global user.email betsy@mylittleuniverse.com`
+- `git config --global color.ui true` (Pretty command line colors)
+
+`git help`: Forgot a command? Type this into the command line to bring up the 21 most common git commands. You can also be more specific and type “git help init” or another term to figure out how to use and configure a specific git command.  You can add the specific ommand you need help with after the word help.  
+Examples: `git help add`, `git help config`, `git help commit`, etc...
 
 `git status`: Check the status of your repository. See which files are inside it, which changes still need to be committed, and which branch of the repository you’re currently working on.
 
 `git add`: This does not add new files to your repository. Instead, it brings new files to Git’s attention. After you add files, they’re included in Git’s “snapshots” of the repository.
-Examples: `git add example.txt` adds adds just the one file to the staging area.
-`git add example.txt webpage.html` adds adds both files file to the staging area.
-`git add --all` adds all new or modified files to the to the staging area.
-`git add *.txt` adds all txt files in _the current directory_ to the staging area.
-`git add "*.txt"` adds all txt files _in the whole project_ to the staging area.
-`git add docs/*.txt` adds all txt files _in the docs directory_ to the staging area.
-`git add docs/` adds _all files_ in the docs directory to the staging area.
+
+Examples: 
+
+- `git add example.txt` adds adds just the one file to the staging area.
+- `git add example.txt webpage.html` adds adds both files file to the staging area.
+- `git add --all` adds all new or modified files to the to the staging area.
+- `git add *.txt` adds all txt files in _the current directory_ to the staging area.
+- `git add "*.txt"` adds all txt files _in the whole project_ to the staging area.
+- `git add docs/*.txt` adds all txt files _in the docs directory_ to the staging area.
+- `git add docs/` adds _all files_ in the docs directory to the staging area.
 
 `git commit -m "Commit Message"`: Git’s most important command. After you make any sort of change, you input this in order to take a “snapshot” of the repository. Usually it goes git commit -m “Message here.” The -m indicates that the following section of the command should be read as a message.
 
