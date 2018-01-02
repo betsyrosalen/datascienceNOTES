@@ -35,28 +35,28 @@ An alternate notation for composition uses the composition operator: o
 (f o g)(x) is read “f of g of x” or “f composed with g at x”, just like f(g(x)).
 
 ### Vertical Shift
-Given a function f(x), if we define a new function g(x) as g(x) = f(x)+k, where k is a constant
+Given a function f(x), if we define a new function g(x) as g(x) = **f(x)+k**, where k is a constant
 then g(x) is a vertical shift of the function f(x), where all the output values have been increased by k.
 
 - If k is positive, then the graph will shift up
 - If k is negative, then the graph will shift down
 
 ### Horizontal Shift
-Given a function f(x), if we define a new function g(x) as g(x) = f(x+k), where k is a constant
+Given a function f(x), if we define a new function g(x) as g(x) = **f(x+k)**, where k is a constant
 then g(x) is a horizontal shift of the function f(x)
 
 - If k is positive, then the graph will shift left
 - If k is negative, then the graph will shift right
 
 ### Reflections
-Given a function f(x), if we define a new function g(x) as g(x) = -f(x),
+Given a function f(x), if we define a new function g(x) as g(x) = **-f(x)**,
 then g(x) is a vertical reflection of the function f(x), sometimes called a reflection about the x-axis
 
-If we define a new function g(x) as f(-x),
+If we define a new function g(x) as **f(-x)**,
 then g(x) is a horizontal reflection of the function f(x), sometimes called a reflection about the y-axis
 
 ### Vertical Stretch/Compression
-Given a function f(x), if we define a new function g(x) as g(x) = kf(x), where k is a constant
+Given a function f(x), if we define a new function g(x) as g(x) = **kf(x)**, where k is a constant
 then g(x) is a **vertical stretch or compression** of the function f(x).
 
 - If k > 1, then the graph will be stretched
