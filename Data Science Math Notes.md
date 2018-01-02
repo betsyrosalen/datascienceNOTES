@@ -58,3 +58,10 @@ then g(x) is a **vertical stretch or compression** of the function f(x).
 - If k > 1, then the graph will be stretched
 - If 0 < k < 1, then the graph will be compressed
 - If k < 0, then there will be combination of a vertical stretch or compression with a vertical reflection
+
+### Combining Transformations
+When combining vertical transformations, it is very important to consider the order of the transformations. For example, vertically shifting by 3 and then vertically stretching by 2 does not create the same graph as vertically stretching by 2 and then vertically shifting by 3. The order follows nicely from order of operations.
+
+#### Combining Vertical Transformations
+When combining vertical transformations written in the form af(x) + k,
+first vertically stretch by a, then vertically shift by k.
