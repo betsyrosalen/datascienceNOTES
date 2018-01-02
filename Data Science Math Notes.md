@@ -1,4 +1,4 @@
-#Data Science Math NOTES
+# Data Science Math NOTES
 
 ## Functions
 
@@ -9,20 +9,21 @@ The vertical line test is a handy way to think about whether a graph defines the
 
 #### Inequality                       
 
-5 < h <= 10
-5 <= h < 10
-5 < h < 10
-h < 10
-h >= 10
-all real numbers
+- 5 < h <= 10
+- 5 <= h < 10
+- 5 < h < 10
+- h < 10
+- h >= 10
+- all real numbers
 
 #### Interval notation
-(5, 10]
-[5, 10)
-(5, 10)
-(-∞,10)
-[10, ∞)
-(∞, ∞)
+
+- (5, 10]
+- [5, 10)
+- (5, 10)
+- (-∞,10)
+- [10, ∞)
+- (∞, ∞)
 
 ### Composition of Functions
 When the output of one function is used as the input of another, we call the entire operation a composition of functions. We write f(g(x)), and read this as “f of g of x” or “f composed with g at x”.
