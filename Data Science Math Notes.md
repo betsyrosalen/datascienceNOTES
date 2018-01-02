@@ -25,6 +25,10 @@ The vertical line test is a handy way to think about whether a graph defines the
 - [10, ∞)
 - (∞, ∞)
 
+### Toolkit Functions
+
+![Graphs of basic functions that you should know on sight.](https://github.com/betsyrosalen/datascienceNOTES/blob/master/Graphs%20of%20the%20Toolkit%20Functions.PNG "Toolkit Functions")
+
 ### Composition of Functions
 When the output of one function is used as the input of another, we call the entire operation a composition of functions. We write f(g(x)), and read this as “f of g of x” or “f composed with g at x”.
 An alternate notation for composition uses the composition operator: o
