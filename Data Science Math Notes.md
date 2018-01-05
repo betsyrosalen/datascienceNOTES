@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Data Science Math NOTES
 
 # Pre-Calculus
