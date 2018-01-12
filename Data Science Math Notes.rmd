@@ -1,8 +1,12 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
+title: "Betsy Rosalen HW 1"
+output: html_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # Data Science Math NOTES
 
 # Pre-Calculus
