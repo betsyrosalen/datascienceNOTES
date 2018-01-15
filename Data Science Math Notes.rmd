@@ -1,13 +1,11 @@
 ---
-title: "Betsy Rosalen HW 1"
+title: "Data Science Math NOTES"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# Data Science Math NOTES
 
 # Pre-Calculus
 
@@ -18,151 +16,170 @@ knitr::opts_chunk$set(echo = TRUE)
 **Vertical Line Test**
 The vertical line test is a handy way to think about whether a graph defines the vertical output as a function of the horizontal input. Imagine drawing vertical lines through the graph. If any vertical line would cross the graph more than once, then the graph does not define only one vertical output for each horizontal input.
 
-#### Inequality                       
+### Domain and Range
+**Domain:** The set of possible input values to a function
+**Range:** The set of possible output values of a function
 
-- 5 < h <= 10
-- 5 <= h < 10
-- 5 < h < 10
-- h < 10
-- h >= 10
-- all real numbers
-
-#### Interval notation
-
-- (5, 10]
-- [5, 10)
-- (5, 10)
-- (-∞,10)
-- [10, ∞)
-- (∞, ∞)
+Inequality | Interval notation              
+------------- | -------------
+5 < h <= 10 | (5, 10]
+5 <= h < 10 | [5, 10)
+5 < h < 10 | (5, 10)
+h < 10 | (-∞,10)
+h >= 10 | [10, ∞)
+all real numbers | (∞, ∞)
 
 ### Toolkit Functions
+
+#### Linear
+
+Constant: $f(x) = c$
+
+Identity: $f(x) = x$
+
+Absolute Value: $f(x) = |x|$
+
+#### Power
+
+Quadratic: $f(x) = x^2$
+
+Cubic: $f(x) = x^3$
+
+Reciprocal: $f(x) = \frac{1}{x}$
+
+Reciprocal Squared: $f(x) = \frac{1}{x^2}$
+
+Square Root: $f(x) = \sqrt[2]{x} = \sqrt{x}$
+
+Cube Root: $f(x) = \sqrt[3]{x}$
+
 
 ![Graphs of basic functions that you should know on sight.](https://github.com/betsyrosalen/datascienceNOTES/blob/master/Graphs%20of%20the%20Toolkit%20Functions.PNG "Toolkit Functions")
 
 ![Graphs of basic functions that you should know on sight.](https://math.libretexts.org/@api/deki/files/925/CNX_Precalc_Figure_01_03_012.jpg?revision=1)
 
-### Composition of Functions
-When the output of one function is used as the input of another, we call the entire operation a composition of functions. We write f(g(x)), and read this as “f of g of x” or “f composed with g at x”.
-An alternate notation for composition uses the composition operator: o
+## Composition of Functions
+When the output of one function is used as the input of another, we call the entire operation a composition of functions. We write $f(g(x))$, and read this as “f of g of x” or “f composed with g at x”.
+An alternate notation for composition uses the composition operator: $\circ$ 
 
-(f o g)(x) is read “f of g of x” or “f composed with g at x”, just like f(g(x)).
+$(f \circ g)(x)$ is read “f of g of x” or “f composed with g at x”, just like $f(g(x))$.
+
+## Transformations of Functions
 
 ### Vertical Shift
-Given a function f(x), if we define a new function g(x) as g(x) = **f(x)+k**, where k is a constant
-then g(x) is a vertical shift of the function f(x), where all the output values have been increased by k.
+Given a function $f(x)$, if we define a new function $g(x)$ as $g(x) = f(x)+k$, where $k$ is a constant
+then $g(x)$ is a vertical shift of the function $f(x)$, where all the output values have been increased by $k$.
 
 - If **k is positive**, then the graph will **shift up**
 - If **k is negative**, then the graph will **shift down**
 
 ### Horizontal Shift
-Given a function f(x), if we define a new function g(x) as g(x) = **f(x+k)**, where k is a constant
-then g(x) is a horizontal shift of the function f(x)
+Given a function *f(x)*, if we define a new function $g(x)$ as $g(x) = f(x+k)$, where $k$ is a constant
+then $g(x)$ is a horizontal shift of the function $f(x)$
 
 - If **k is positive**, then the graph will **shift left**
 - If **k is negative**, then the graph will **shift right**
 
 ### Reflections
-Given a function f(x), if we define a new function g(x) as g(x) = **-f(x)**,
-then g(x) is a **vertical reflection** of the function f(x), sometimes called a reflection about the x-axis
+Given a function f(x), if we define a new function $g(x)$ as $g(x) = -f(x)$,
+then $g(x)$ is a **vertical reflection** of the function $f(x)$, sometimes called a reflection about the x-axis
 
-If we define a new function g(x) as **f(-x)**,
-then g(x) is a **horizontal reflection** of the function f(x), sometimes called a reflection about the y-axis
+If we define a new function $g(x)$ as $f(-x)$,
+then $g(x)$ is a **horizontal reflection** of the function $f(x)$, sometimes called a reflection about the y-axis
 
 ### Vertical Stretch/Compression
-Given a function f(x), if we define a new function g(x) as g(x) = **kf(x)**, where k is a constant
-then g(x) is a **vertical stretch or compression** of the function f(x).
+Given a function $f(x)$, if we define a new function $g(x)$ as $g(x) = kf(x)$, where $k$ is a constant
+then $g(x)$ is a **vertical stretch or compression** of the function $f(x)$.
 
-- If k > 1, then the graph will be stretched
-- If 0 < k < 1, then the graph will be compressed
-- If k < 0, then there will be combination of a vertical stretch or compression with a vertical reflection
+- If $k > 1$, then the graph will be stretched
+- If $0 < k < 1$, then the graph will be compressed
+- If $k < 0$, then there will be combination of a vertical stretch or compression with a vertical reflection
 
-### Combining Transformations
+## Combining Transformations
 When combining vertical transformations, it is very important to consider the order of the transformations. For example, vertically shifting by 3 and then vertically stretching by 2 does not create the same graph as vertically stretching by 2 and then vertically shifting by 3. The order follows nicely from order of operations.
 
 #### Combining Vertical Transformations
-When combining vertical transformations written in the form af(x) + k,
-first vertically stretch by a, then vertically shift by k.
+When combining vertical transformations written in the form $af(x) + k$,
+first vertically stretch by $a$, then vertically shift by $k$.
 
 ## Linear Functions
-A linear function is a function whose graph produces a line. Linear functions can always be written in the form **f(x) = b+mx** or **f(x) = mx+b**; they’re equivalent where b is the initial or starting value of the function (when input, x = 0), and m is the constant rate of change of the function This form of a line is called **slope-intercept form** of a line.
+A linear function is a function whose graph produces a line. Linear functions can always be written in the form $f(x) = b+mx$ or $f(x) = mx+b$; they’re equivalent where $b$ is the initial or starting value of the function (when input, $x = 0$), and $m$ is the constant rate of change of the function This form of a line is called **slope-intercept form** of a line.
 
 #### Slope and Increasing/Decreasing
 **m is the constant rate of change** of the function (also called **slope**). The slope determines if the function is an increasing function or a decreasing function.
-f(x) = b + mx is an **increasing function if m > 0**
-f(x) = b + mx is a **decreasing function if m<0**
-If m = 0 , the rate of change zero, and the function f(x) = b+0x = b is just a horizontal line passing through the point (0, b), neither increasing nor decreasing.
+$f(x) = b + mx$ is an **increasing** function if $m > 0$
+$f(x) = b + mx$ is a **decreasing** function if $m<0$
+If $m = 0$ , the rate of change zero, and the function $f(x) = b + 0x = b$ is just a horizontal line passing through the point (0, b), neither increasing nor decreasing.
 
-m = change in y over the change in x = (y2 - y1) / (x2 - x1)
+$m$ = change in $y$ over the change in $x$ = $\frac{y_2 - y_1}{x_2 - x_1}$
 
 #### Point-Slope Equation of a Line
-An equation for the line passing through the point (x1, y1) with slope m can be written as y − y1 = m(x − x1)
+An equation for the line passing through the point $(x_1, y_1)$ with slope $m$ can be written as $y − y_1 = m(x − x_1)$
 This is called the **point-slope form** of a line.
 
 Point-slope is a specific form of linear equations in two variables:
-y - b = m(x - a) 
+$y - b = m(x - a)$
 
-When an equation is written in this form, m gives the slope of the line and (a,b) is a point the line passes through.
+When an equation is written in this form, $m$ gives the slope of the line and $(a,b)$ is a point the line passes through.
 
 #### Graphical Interpretation of a Linear Equation
-Graphically, in the equation **f(x) = b + mx**
+Graphically, in the equation $f(x) = b + mx$
 
-- **b** is the **vertical intercept** of the graph and tells us we can start our graph at (0, b)
-- **m** is the **slope** of the line and tells us how far to rise & run to get to the next point
+- $b$ is the **vertical intercept** of the graph and tells us we can start our graph at $(0, b)$
+- $m$ is the **slope** of the line and tells us how far to rise & run to get to the next point
 
 #### Finding **Horizontal Intercept**
-The horizontal intercept of the function is where the graph crosses the horizontal axis. If a function has a horizontal intercept, you can always find it by solving f(x) = 0.
+The horizontal intercept of the function is where the graph crosses the horizontal axis. If a function has a horizontal intercept, you can always find it by solving $f(x) = 0$.
 
 
 #### Intersections of Lines
-The graphs of two lines will intersect if they are not parallel. They will intersect at the point that satisfies both equations. To find this point when the equations are given as functions, we can solve for an input value so that f(x) = g(x) . In other words, we can set the formulas for the lines equal, and solve for the input that satisfies the equation.
+The graphs of two lines will intersect if they are not parallel. They will intersect at the point that satisfies both equations. To find this point when the equations are given as functions, we can solve for an input value so that $f(x) = g(x)$ . In other words, we can set the formulas for the lines equal, and solve for the input that satisfies the equation.
 
 ## Exponents
 
 ### Laws of Exponents:
 All variables here represent real numbers and all variables in denominators are nonzero.
-1. x^a⋅x^b = x^(a+b)  
-2. x^a / x^b = x^(a-b)  
-3. (x^a)^b = x^ab  
-4. (xy)^a = x^a⋅y^a  
-5. (x/y)^b = x^b / y^b  
-6. x^0 = 1, provided x != 0  
-7. x^-n = 1/x^n, provided x != 0    
-8. x^1/n = the nth root of x, provided x != 0  
 
-![Laws of Exponents](http://dailprice.weebly.com/uploads/1/3/2/7/13279202/2545731_orig.png)
+Rule | Formula | Notes
+----- | ----- | -----
+Product Rule | $x^a⋅x^b = x^{a+b}$ | 
+Quotient Rule | $\frac{x^a}{x^b} = x^{a-b}$ | 
+Power of a Power | $(x^a)^b = x^{ab}$ | 
+Power of a Product | $(xy)^a = x^a⋅y^a$ | 
+Power of a Quotient | $(\frac{x}{y})^b = \frac{x^b}{y^b}$ | 
+Zero Exponent | $x^0 = 1$ | provided $x \neq 0$ 
+Negative Exponents | $x^{-n} = \frac{1}{x^n}$ | provided $x \neq 0$    
+Fractional Exponents | $x^1/n = \sqrt[n]{x}$ | provided $x \neq 0$  
 
 ## Quadratics
-Quadratics are transformations of the f(x) = x2 function. Quadratics commonly arise from problems involving area and projectile motion
+Quadratics are transformations of the $f(x) = x2$ function. Quadratics commonly arise from problems involving area and projectile motion
 
 ### Forms of Quadratic Functions
-The **standard form** of a quadratic function is **f(x) = ax^2 + bx + c** 
+The **standard form** of a quadratic function is $f(x) = ax^2 + bx + c$ 
 
-The **transformation form** of a quadratic function is **f(x) = a(x−h)^2 + k**
+The **transformation form** of a quadratic function is $f(x) = a(x−h)^2 + k$
  
-The **vertex** *(the lowest point or turnaround point of the graphed curve)* of the quadratic function is located at (h, k), where h and k are the numbers in the transformation form of the function. Because the vertex appears in the transformation form, it is often called the **vertex form**.
+The **vertex** *(the lowest point or turnaround point of the graphed curve)* of the quadratic function is located at $(h, k)$, where $h$ and $k$ are the numbers in the transformation form of the function. Because the vertex appears in the transformation form, it is often called the **vertex form**.
 
 #### Intercepts
-As with any function, we can find the **vertical intercepts** of a quadratic by evaluating the function at an input of zero.  In the standard form of a quadratic, the constant term c reveals the vertical intercept of the graph, since f(0) = a(0)^2 + b(0) + c = c
+As with any function, we can find the **vertical intercepts** of a quadratic by evaluating the function at an input of zero.  In the standard form of a quadratic, the constant term $c$ reveals the vertical intercept of the graph, since $f(0) = a(0)^2 + b(0) + c = c$
 
 We can find the **horizontal intercepts** by solving for when the output will be zero. Depending upon the location of the graph, we might have zero, one, or two horizontal intercepts.
 
 #### Quadratic Formula
-For a quadratic function given in standard form f(x) = ax^2 + bx + c, the ***quadratic formula gives the horizontal intercepts*** of the graph of this function.
+For a quadratic function given in standard form $f(x) = ax^2 + bx + c$, the ***quadratic formula gives the horizontal intercepts*** of the graph of this function.
 
-x = (−b ± sqrt(b^2 − 4ac)) / 2a
-
-![Quadratic Formula.](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Quadratic_formula.svg/200px-Quadratic_formula.svg.png)
+$x = \frac{−b ± \sqrt{b^2 − 4ac}}{2a}$
 
 ## Polynomials and Rational Functions 
 
 ### Polynomial Functions
 #### Terminology of Polynomial Functions
-A **polynomial** is function that can be written as f(x) = a0 + a1x + a2x^2 + ... + anx^n  
+A **polynomial** is function that can be written as $f(x) = a_0 + a_1x + a_2x^2 + ... + a_nx^n$  
 
 Each of the ai constants are called **coefficients** and can be positive, negative, or zero, and be whole numbers, decimals, or fractions.  
 
-A **term** of the polynomial is any one piece of the sum, that is any ai xi . Each individual term is a transformed power function.
+A **term** of the polynomial is any one piece of the sum, that is any $a_ix^i$ . Each individual term is a transformed power function.
 
 The **degree** of the polynomial is the highest power of the variable that occurs in the polynomial.
 
@@ -170,27 +187,31 @@ The **leading term** is the term containing the highest power of the variable: t
 
 The **leading coefficient** is the coefficient of the leading term.
 
-Because of the definition of the “leading” term we often rearrange polynomials so that the powers are descending. f(x)=anx^n + .....+ a2x^2 + a1x + a0
+Because of the definition of the “leading” term we often rearrange polynomials so that the powers are descending. $f(x)=a_nx^n + .....+ a_2x^2 + a_1x + a_0$
 
 #### Intercepts
 
-Find **vertical intercepts** by solving for f(0)
+Find **vertical intercepts** by solving for $f(0)$
 
 Finding **horizontal intercepts** can be challenging, so technology is often used.
 
 ### Rational Functions
-Rational functions are the ratios, or fractions, of polynomials. A rational function is a function that can be written as the ratio of two polynomials, P(x) / Q(x)
+Rational functions are the ratios, or fractions, of polynomials. A rational function is a function that can be written as the ratio of two polynomials, P(x) and Q(x). 
+
+$$f(x) = \frac{P(x)}{Q(x)} = \frac{a_0+a_1x+a_2x^2+...+a_px^p}{a_0+a_1x+a_2x^2+...+a_qx^q}$$
 
 #### Vertical and Horizontal Asymptotes
-A **vertical asymptote** of a graph is a vertical line x = a where the graph tends towards positive or negative infinity as the inputs approach a. **As x → a , f(x) → ± ∞**
+A **vertical asymptote** of a graph is a vertical line $x = a$ where the graph tends towards positive or negative infinity as the inputs approach $a$. As $x → a$ , $f(x) → ± ∞$
 
+##### Vertical Asymptotes of Rational Functions
 The vertical asymptotes of a rational function will occur where the denominator of the function is equal to zero and the numerator is not zero.
 
-A **horizontal asymptote** of a graph is a horizontal line y = b where the graph approaches the line as the inputs get large. **As x → ± ∞ , f(x) → b**
+##### Horizontal Asymptote of Rational Functions
+A **horizontal asymptote** of a graph is a horizontal line y = b where the graph approaches the line as the inputs get large. As $x → ± ∞$ , $f(x) → b$
 
 The horizontal asymptote of a rational function can be determined by looking at the degrees of the numerator and denominator.
 
-- Degree of denominator > degree of numerator: Horizontal asymptote at y = 0 
+- Degree of denominator > degree of numerator: Horizontal asymptote at $y = 0$ 
 - Degree of denominator < degree of numerator: No horizontal asymptote
 - Degree of denominator = degree of numerator: Horizontal asymptote at ratio of leading coefficients.
 
@@ -200,71 +221,85 @@ As with all functions, a rational function will have a **vertical intercept when
 Likewise, a rational function will have **horizontal intercepts at the inputs that cause the output to be zero** (unless that input corresponds to a hole). It is possible there are no horizontal intercepts. Since a fraction is only equal to zero when the numerator is zero, horizontal intercepts will occur when the numerator of the rational function is equal to zero.
 
 ## Exponential Functions
-An **exponential growth or decay function** is a function that grows or shrinks at a constant percent growth rate. The equation can be written in the form **f(x) = a(1+ r)^x** or **f(x) = ab^x** where **b = 1 + r**
+An **exponential growth or decay function** is a function that grows or shrinks at a constant percent growth rate. The equation can be written in the form $f(x) = a(1+ r)^x$ or $f(x) = ab^x$ where $b = 1 + r$
 
 Where:
 
-- **a** is the initial or **starting value** of the function
-- **r** is the **percent growth** or **decay rate**, written as a decimal
-- **b** is the **growth factor** or **growth multiplier**. Since powers of negative numbers behave strangely, we limit b to positive values.
+- $a$ is the initial or **starting value** of the function
+- $r$ is the **percent growth** or **decay rate**, written as a decimal
+- $b$ is the **growth factor** or **growth multiplier**. Since powers of negative numbers behave strangely, we limit b to positive values.
 
-### Euler’s Number: e ≈ 2.718282
+### Euler’s Number: *e* ≈ 2.718282
+$e ≈ 2.718282$
 Useful for things continuous growth, such as continuous compounding (interest), or natural phenomena like radioactive decay that happen continuously.
 
-***e* = the limit as n -> ∞ of (1 + 1/n)^n**
+$e =$ the limit as $n -> ∞$ of $(1 + \frac{1}{n})^n$**
 
 ### Continuous Growth Formula
-Continuous Growth can be calculated using the formula **f(x) = a*e*^rx**
+Continuous Growth can be calculated using the formula $f(x) = ae^{rx}$
 where:
 
 - **a** is the **starting amount**
 - **r** is the **continuous growth rate**
 
 ### Graphical Features of Exponential Functions
-Graphically, in the function f(x) = ab^x
+Graphically, in the function $f(x) = ab^x$
 
 - **a** is the **vertical intercept** of the graph
 - **b** determines **the rate at which the graph grows**
-    - the function will ***increase if b > 1***
-    - the function will ***decrease if 0 < b < 1*** (negative rate)
+    - the function will ***increase if *** $b > 1$
+    - the function will ***decrease if *** $0 < b < 1$ 
+    ***(negative rate)***
 
-The graph will have a horizontal asymptote at y = 0  
-The graph will be concave up if a > 0; concave down if a < 0.  
+The graph will have a horizontal asymptote at $y = 0$  
+The graph will be concave up if a > 0; concave down if $a < 0$.  
 The domain of the function is all real numbers  
-The range of the function is (0,∞)
+The range of the function is $(0,∞)$
 
-When sketching the graph of an exponential function, it can be helpful to remember that **the graph will pass through the points (0, a) and (1, ab)**.
+When sketching the graph of an exponential function, it can be helpful to remember that **the graph will pass through the points ** $(0, a)$ ** and ** $(1, ab)$.
 
 The value b will determine the function’s long run behavior: 
 
-- If **b > 1**, as x → ∞, f(x) → ∞ and as x → −∞ , f(x) → 0
-- If **0 < b < 1** (negative rate), as x→∞, f(x) → 0 and as x → −∞, f(x) → ∞
+- If $b > 1$, as $x → ∞$, $f(x) → ∞$ and as $x → −∞$, $f(x) → 0$
+- If $0 < b < 1$ (negative rate), as $x→∞$, $f(x) → 0$ and as $x → −∞$, $f(x) → ∞$
 
 ## Logarithmic Functions
 Logarithms are the inverse of exponential functions -- they allow us to undo exponential functions and solve for the exponent. They are also commonly used to express quantities that vary widely in size.
 
 ### Logarithm Equivalent to an Exponential
-The logarithm (base b) function, written **log_b(x)**, is the **inverse** of the exponential function (base b), **b^x**.
-This means the statement **b^a = c** is equivalent to the statement **log_b(c) = a**.
+The logarithm (base b) function, written $\log_b(x)$, is the **inverse** of the exponential function (base b), $b^x$.
+This means the statement $b^a = c$ is equivalent to the statement $\log_b(c) = a$.
 
 ### Inverse Properties of Logs
 
-- log_b(b^x) = x
-- b^(log_b(x)) = x
+- $\log_b(b^x) = x$
+- $b^{\log_b(x)} = x$
 
 ### Common and Natural Logarithms
-The **common log** is the logarithm with **base 10**, and is typically written **log(x)** . 
+The **common log** is the logarithm with **base 10**, and is typically written $log(x)$ . 
 
-- 100 	= 10^2 		= log(2)  
-- 10 	= 10^1 		= log(1)  
-- 1 	= 10^0 		= log(0)
-- 0.1 	= 10^-1 	= log(-1)
-- 0.01 	= 10^-2 	= log(-2)
+number | number as exponential | log(number)
+-------- | -------- | --------
+100 | $10^2$ | $log(2)$
+10 | $10^1$ | $log(1)$
+1 | $10^0$ | $log(0)$
+0.1 | $10^{-1}$ | $log(-1)$
+0.01 | $10^{-2}$ | $log(-2)$
 
-The **natural log** is the logarithm with **base e**, and is typically written **ln(x)** .
+The **natural log** is the logarithm with **base e**, and is typically written $ln(x)$ .
 
 ### Properties of Logs: Exponent Property
-**log_b(A^*r*)** = ***r*log_b(A)**
+$\log_b(A^r) = r\log_b(A)$
+
+### Graphical Features of the Logarithm
+Graphically, in the function $g(x)=\log_(x)$
+The graph has a horizontal intercept at $(1, 0)$
+The graph has a vertical asymptote at $x = 0$
+The graph is increasing and concave down
+The domain of the function is $x > 0$, or $(0,∞)$
+The range of the function is all real numbers, or $(∞−,∞)$
+
+When sketching a general logarithm with base b, it can be helpful to remember that the graph will pass through the points $(1, 0)$ and $(b, 1)$.
 
 ### Solving exponential equations:
 - Isolate the exponential expressions when possible
@@ -279,15 +314,16 @@ The **natural log** is the logarithm with **base e**, and is typically written *
 **Secant**: A secant line is a line between two points on a curve.  the closer the two points, the closer the secant slope gets to the **tangent** slope.
 
 ### Limits
-The **limit** of a function describes the behavior of the function when the variable is near, but does not equal, a specified number
+The **limit** of a function describes the behavior of the function when the variable is near, but does not equal, a specified number or constant $c$
 
-We say **"the limit of f(x), as x approaches c, is L"**
+We say "the limit of $f(x)$, as $x$ approaches $c$, is $L$"
 
-lim x→c f(x) = L
+$$\lim_{x\to{c}} f(x) = L$$
 
-lim x→c f(x) is a single number that describes the behavior of f(x) *NEAR, BUT NOT AT*, the point x = c.
 
-If the graph at that point (n, y) is not near a single number we say, lim x→n f(x) does not exist
+$\lim_{x\to{c}} f(x) = L$ is a single number that describes the behavior of $f(x)$ *NEAR, BUT NOT AT*, the point $x = c$.
+
+If the graph at that point $(n, y)$ is not near a single number we say, $\lim_{x\to{c}} f(x)$ does not exist
 
 Just because f(x) at x = c is not defined it does not mean that lim x→c does not exist.  You can still find the limit using algebra or a graph (page 76 in textbook)
 
