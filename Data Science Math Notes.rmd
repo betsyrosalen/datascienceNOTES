@@ -323,9 +323,9 @@ $$\lim_{x\to{c}} f(x) = L$$
 
 $\lim_{x\to{c}} f(x) = L$ is a single number that describes the behavior of $f(x)$ *NEAR, BUT NOT AT*, the point $x = c$.
 
-If the graph at that point $(n, y)$ is not near a single number we say, $\lim_{x\to{c}} f(x)$ does not exist
+If the graph at that point $(n, y)$ is not near a single number we say, $\lim_{x\to{n}} f(x)$ does not exist
 
-Just because f(x) at x = c is not defined it does not mean that lim x→c does not exist.  You can still find the limit using algebra or a graph (page 76 in textbook)
+Just because $f(x)$ at $x = c$ is not defined it does not mean that $\lim_{x\to{c}}$ does not exist.  You can still find the limit using algebra or a graph (page 76 in textbook)
 
 The values of a function near a point may depend on the direction we use to approach that point.  In this case there are Left and Right Limits denoted with x → c- and x → c+
 
