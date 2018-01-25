@@ -1,0 +1,25 @@
+---
+title: "R Notes"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installing and Setting Up R and RStudio
+
+1. **Run the installer as an administrator** for **both R and RStudio** by right clicking and selecting run as administrator.
+2. **Choose a directory with NO SPACES** in the name to install **R and RStudio**.  Directly under the C: Drive works...
+
+### If antivirus won't move packages out of temp folder...
+
+1. Try to install the packages
+2. when you get the error message saying that the files could not be moved and are in the temp folder 
+  a. go to that temp folder
+  b. LEAVE RSTUDIO OPEN (otherwise the temp files are deleted).  
+  c. The temp folder contains zip files that you then need to extract to the location of your library which is also noted in the error message.  
+  d. Although I had to install directly in the "Library" folder the error tagged another folder on the end that wasn't there.  Some packages have dependencies that need to be installed first, so I had to just keep checking the temp folder and installing the dependencies first then try again...  Eventually I got them all, but it was a back and forth try and retry sort of thing.
+
