@@ -1,4 +1,4 @@
-# datasciencecoursera - NOTES
+# Git and Command Line NOTES - from datasciencecoursera
 
 ## Git Vocabulary
 
