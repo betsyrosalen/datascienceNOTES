@@ -140,6 +140,8 @@ Note that while the examples on this page apply functions to individual variable
 R Comand | Description
 ----- | -----
 `ctrl + L` | to clear console
+`install.package(package_name)` | installs package
+`library(package_name)` or <br>`require(package_name)`  | loads package into memory
 `?function_name` | Displays the documentation for the function in the viewer window in RStudio
 `getwd()` | get the working directory
 `setwd("file\path")` | set the working directory
@@ -168,3 +170,75 @@ y <- read.csv(text = x)
 
 source: <http://stackoverflow.com/questions/14441729/read-a-csv-from-github-into-r>
 
+## Generating Random Numbers
+
+For uniformly distributed (flat) random numbers, use runif(). By default, its range is from 0 to 1.
+
+```
+runif(1)
+#> [1] 0.09006613
+
+# Get a vector of 4 numbers
+runif(4)
+#> [1] 0.6972299 0.9505426 0.8297167 0.9779939
+
+# Get a vector of 3 numbers from 0 to 100
+runif(3, min=0, max=100)
+#> [1] 83.702278  3.062253  5.388360
+
+# Get 3 integers from 0 to 100
+# Use max=101 because it will never actually equal 101
+floor(runif(3, min=0, max=101))
+#> [1] 11 67  1
+
+# This will do the same thing
+sample(1:100, 3, replace=TRUE)
+#> [1]  8 63 64
+
+# To generate integers WITHOUT replacement:
+sample(1:100, 3, replace=FALSE)
+#> [1] 76 25 52
+```
+
+To generate numbers from a normal distribution, use rnorm(). By default the mean is 0 and the standard deviation is 1.
+
+```
+rnorm(4)
+#> [1] -2.3308287 -0.9073857 -0.7638332 -0.2193786
+
+# Use a different mean and standard deviation
+rnorm(4, mean=50, sd=10)
+#> [1] 59.20927 40.12440 44.58840 41.97056
+
+# To check that the distribution looks right, make a histogram of the numbers
+x <- rnorm(400, mean=50, sd=10)
+hist(x)
+```
+
+If you want to generate a sequence of random numbers, and then generate that same sequence again later, use set.seed(), and pass in a number as the seed.
+
+```
+set.seed(423)
+runif(3)
+#> [1] 0.1089715 0.5973455 0.9726307
+
+set.seed(423)
+runif(3)
+#> [1] 0.1089715 0.5973455 0.9726307
+```
+
+## Measuring elapsed time
+
+The system.time() function will measure how long it takes to run a particular block of code in R.
+
+```
+system.time({
+    # Do something that takes time
+    x <- 1:100000
+    for (i in seq_along(x))  x[i] <- x[i]+1
+})
+#>    user  system elapsed 
+#>   0.144   0.002   0.153
+```
+
+The output means it took 0.153 seconds to run the block of code.
