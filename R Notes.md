@@ -37,8 +37,6 @@ There is no `is.date` function.
 
 This section taken from <https://www.statmethods.net/management/functions.html> with some additions by me.
 
-Almost everything in R is done through functions. Here I'm only refering to numeric and character functions that are commonly used in creating or recoding variables.
-
 (To practice working with functions, try the functions sections of this this interactive course.)
 
 ### Numeric Functions
@@ -142,6 +140,9 @@ Note that while the examples on this page apply functions to individual variable
 R Comand | Description
 ----- | -----
 `ctrl + L` | to clear console
+`ls()` | list the objects in memory to the console
+`library()` | Lists the packages in your library
+`search()` | Shows packages that are currently active
 `install.package(package_name)` | installs package
 `library(package_name)` or <br>`require(package_name)`  | loads package into memory
 `?function_name` | Displays the documentation for the function in the viewer window in RStudio
@@ -160,6 +161,32 @@ R Comand | Description
 `df$totals <- df$var1 + df$var2` | Creates a new column and puts the total of var1 and var2 in that column
 `df[which.max(df$var),]` | Finds the row with max in specified variable column
 
+## Entering Data in R
+
+R Comand | Description
+----- | -----
+`x <- 0:10` | Assigns numbers 0 through 10 to x in a vector
+`y <- c(1,2,5,3,7,8,4,9,0)` | Assigns the vector to y
+
+## Reading R data from CSV
+
+`read.csv("file/location", header = F)`
+
+Must use double backslash or forward slashes.
+
+`header = F` means the original file has no header
+
+## Reading R data from SPSS
+
+Use Foreign Package
+
+```
+install.packages("foreign")
+library(foreign)
+df <- read.spss("file/location", to.data.frame=T, use.value.labels=T)
+```
+
+
 ## Reading R data from GitHub
 
 Here is some sample code for reading R from a dataset that has been posted in a GitHub repository:
@@ -171,6 +198,8 @@ y <- read.csv(text = x)
 ```
 
 source: <http://stackoverflow.com/questions/14441729/read-a-csv-from-github-into-r>
+
+**Make sure you copy the RAW data URL location.**
 
 ## Generating Random Numbers
 
@@ -229,6 +258,17 @@ runif(3)
 #> [1] 0.1089715 0.5973455 0.9726307
 ```
 
+## Random Samples
+
+Use the sample( ) function to take a random sample of size n from a dataset.
+
+```
+# take a random sample of size 50 from a dataset mydata 
+# sample without replacement
+mysample <- mydata[sample(1:nrow(mydata), 50,
+  	replace=FALSE),]
+```
+
 ## Measuring elapsed time
 
 The system.time() function will measure how long it takes to run a particular block of code in R.
@@ -244,3 +284,74 @@ system.time({
 ```
 
 The output means it took 0.153 seconds to run the block of code.
+
+## Subsetting Data
+
+R has powerful indexing features for accessing object elements. These features can be used to select and exclude variables and observations. The following code snippets demonstrate ways to keep or delete variables and observations and to take random samples from a dataset.
+
+### Selecting (Keeping) Variables
+
+```
+# select variables v1, v2, v3
+myvars <- c("v1", "v2", "v3")
+newdata <- mydata[myvars]
+
+# another method
+myvars <- paste("v", 1:3, sep="")
+newdata <- mydata[myvars]
+
+# select 1st and 5th thru 10th variables
+newdata <- mydata[c(1,5:10)]
+```
+
+To practice this interactively, try the [selection of data frame elements exercises](https://campus.datacamp.com/courses/free-introduction-to-r/chapter-5-data-frames?ex=6) in the Data frames chapter of this [introduction to R course](https://www.datacamp.com/courses/free-introduction-to-r).
+
+### Excluding (DROPPING) Variables
+
+```
+# exclude variables v1, v2, v3
+myvars <- names(mydata) %in% c("v1", "v2", "v3") 
+newdata <- mydata[!myvars]
+
+# exclude 3rd and 5th variable 
+newdata <- mydata[c(-3,-5)]
+
+# delete variables v3 and v5
+mydata$v3 <- mydata$v5 <- NULL
+```
+
+### Selecting Observations
+
+```
+# first 5 observations
+newdata <- mydata[1:5,]
+
+# based on variable values
+newdata <- mydata[ which(mydata$gender=='F' 
+& mydata$age > 65), ]
+
+# or
+attach(mydata)
+newdata <- mydata[ which(gender=='F' & age > 65),]
+detach(mydata)
+```
+
+### Selection using the Subset Function
+The subset( ) function is the easiest way to select variables and observations. In the following example, we select all rows that have a value of age greater than or equal to 20 or age less then 10. We keep the ID and Weight columns.
+
+```
+# using subset function 
+newdata <- subset(mydata, age >= 20 | age < 10, 
+select=c(ID, Weight))
+```
+
+In the next example, we select all men over the age of 25 and we keep variables weight through income (weight, income and all columns between them).
+
+```
+# using subset function (part 2)
+newdata <- subset(mydata, sex=="m" & age > 25,
+select=weight:income)
+```
+
+To practice the subset() function, try this this [interactive exercise](https://campus.datacamp.com/courses/data-table-data-manipulation-r-tutorial/chapter-one-datatable-novice?ex=7#skiponboarding). on subsetting data.tables.
+
