@@ -4,6 +4,8 @@
 
 ### Primitives
 
+#### All R primitives are technically vectors
+
 R | Python | Notes
 ----- | ----- | -----
 character | Str | 

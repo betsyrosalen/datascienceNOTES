@@ -353,4 +353,8 @@ Happy writing!
 
 [^math]: Internet connection required.
 
+htmlDependency(name, version, "C:\R\R-3.4.3\library", meta = NULL, script = NULL,
+  stylesheet = NULL, head = NULL, attachment = NULL, package = NULL,
+  all_files = TRUE)
+  
 
