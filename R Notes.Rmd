@@ -34,9 +34,51 @@ factor |  | kinda like Python dictionaries but has levels as well, can be ordere
 date |  | 
 vector  |  | all R primitives are technically vectors and can have length
 list |  list | 
+matrix |  | 
 data.frame |  | 
 
 There is no `is.date` function.
+
+## Entering Data in R
+
+### Vectors
+
+R Comand | Description
+----- | -----
+`x <- 0:10` | Assigns numbers 0 through 10 to x in a vector
+`y <- c(1,2,5,3,7,8,4,9,0)` | Assigns the vector to y
+
+Function | Description
+----- | -----
+`length(vector)` | returns the length of the vector
+
+### Data Frames
+
+```{r}
+x <- 1:3
+y <- 4:6
+z <- c('seven', 'eight', 'nine')
+DF <- data.frame(x, y, z)
+DF
+```
+
+Function | Description
+----- | -----
+`nrow(dataframe)` | returns the number of rows
+`ncol(dataframe)` | returns the number of columns
+`str(dataframe)` | returns the structure of the dataframe
+`dim(dataframe)` | Returns the dimensions of the dataframe
+`head(df, 3)` | returns the first 3 rows of the dataframe
+`tail(df, 5)` | returns the last 5 rows of the dataframe
+`names(dataframe)` | Returns the names of the columns or variabes in the dataframe
+`names(df)[3]` | returns the third column name
+`names(DF) <- c('one', 'two', 'three')` | Assigns names to the columns in the dataframe
+`rownames(dataframe)` | Returns the names of the rows in the dataframe
+`rownames(df) <- c('one', 'two')` | Assigns names to the rows in the dataframe
+`rownames(df) <- NULL` | resets to generic index names
+`dataframe$variable` | Returns all of the values in the specified variable as a ***vector***
+`df$totals <- df$var1 + df$var2` | Creates a new column and puts the total of var1 and var2 in that column
+`df[which.max(df$var),]` | Finds the row with max in specified variable column
 
 ## Variables
 
@@ -52,17 +94,21 @@ Variable names can use any conbination of alphanumeric characters, periods and u
 
 Note - single and double quotes can be used interchangeably like in Python.
 
-### Remove
+### Removing Variables
 
 `remove(var)` or `rm(var)`
 
-## Vectors
+## Functions
 
-`c(1, 2, 3, 4, 5)`
+### Pipes
 
-`length(v)`
+Pipes require the *magrittr* or *dplyr* package.
 
+`x %>% mean(na.rm=TRUE)` passes the x variable in to the first argument in the mean function
 
+can be chained together
+
+z %>% is.na %>% sum
 
 ## Built-in Functions
 
@@ -183,26 +229,13 @@ R Comand | Description
 `apropos('func')` | to search for a function by only part of the name
 `getwd()` | get the working directory
 `setwd("file\path")` | set the working directory
-`str(dataframe)` | returns the structure of the dataframe
-`dim(dataframe)` | Returns the dimensions of the dataframe
-`names(dataframe)` | Returns the names of the columns or variabes in the dataframe
-`dataframe$variable` | Returns all of the values in the specified variableas a ***vector***
 `table(df$var1, useNA='ifany')` | Creates a table of sums of each value for the variable
 `table(df$var1, df$var2, useNA='ifany')` | Creates a table of sums of the inersection of the two variables
 `prop.table(table(df$var))` | Creates a table of the proportion of each value for the variable
 `barplot(table(df$var), las=3)` | Creates a bargraph of the values of the variable
 `plot(x = df$var1, y = df$var2)` | Creates a scatterplot of the two variables<br> Technically you don't need the x= and y= as long as you put them first and in that order because by default the first 2 arguments are for the x and y variables
 `plot(df$var1, df$var2, type = "l")` | Creates a linegraph of the two variables
-`hist(x)` | Creates a histogram of ththe single variable x
-`df$totals <- df$var1 + df$var2` | Creates a new column and puts the total of var1 and var2 in that column
-`df[which.max(df$var),]` | Finds the row with max in specified variable column
-
-## Entering Data in R
-
-R Comand | Description
------ | -----
-`x <- 0:10` | Assigns numbers 0 through 10 to x in a vector
-`y <- c(1,2,5,3,7,8,4,9,0)` | Assigns the vector to y
+`hist(x)` | Creates a histogram of the single variable x
 
 ## Reading R data from CSV
 
@@ -221,7 +254,6 @@ install.packages("foreign")
 library(foreign)
 df <- read.spss("file/location", to.data.frame=T, use.value.labels=T)
 ```
-
 
 ## Reading R data from GitHub
 
@@ -360,7 +392,16 @@ mydata$v3 <- mydata$v5 <- NULL
 
 ```
 # first 5 observations
-newdata <- mydata[1:5,]
+newdata <- mydata[1:5, ]
+
+# first 5 variables/columns
+newdata <- mydata[ ,1:5]
+
+# row 2 column 6
+newdata <- mydata[2,6]
+
+# row 2 and 4 column 6
+newdata <- mydata[c(2,4),6]
 
 # based on variable values
 newdata <- mydata[ which(mydata$gender=='F' 
