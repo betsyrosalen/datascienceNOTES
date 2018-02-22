@@ -22,4 +22,183 @@ knitr::opts_chunk$set(echo = TRUE)
     b. LEAVE RSTUDIO OPEN (otherwise the temp files are deleted).  
     c. The temp folder contains zip files that you then need to extract to the location of your library which is also noted in the error message.  
     d. Although I had to install directly in the "Library" folder the error tagged another folder on the end that wasn't there.  Some packages have dependencies that need to be installed first, so I had to just keep checking the temp folder and installing the dependencies first then try again...  Eventually I got them all, but it was a back and forth try and retry sort of thing.
+    
+### Installing Packages
+
+`install.packages("package_Name")`
+
+#### Installing packages from GitHub
+
+```
+library(devtools)
+install_github(repo="package_name/username")
+```
+
+#### Installing packages from .zip or tar.gz
+
+Go to the menu to install packages and change the "Install from:" dropdown to the correct type.
+
+### Loading Packages
+
+Can be done with either `library(package, quietly=TRUE)` or `require()`
+Preferable to use `library` when writing scripts.
+
+`quietly=TRUE` attribute will hide any waaranings or errors fro showing up in your knit documents.
+
+`coefplot::coefplot(object)` allows the function to be called without loading the package first and ensures that if there are two packages with the same function that the right one is called.
+
+## The R Environment
+
+Mac interface has the most features.
+
+Do not ssave .RData files on startup to starta fresh session each time and avoid problems.
+
+To repeat a line of code press the `up arrow` key and `Enter`.  You can scroll through your whole history of lines of code this way by just pressing the up arrow multiple times.
+
+Interrupt a command with `Esc`
+
+`Command+Enter` to run just one line of code where youu place your cursor, or to run multiple lines of code you selected.  
+
+`Ctrl+Shift+S` to run an entire file of code.
+
+`Tab` to autocomplete
+
+### Keyboard Shortcuts
+
+*Full list is available directly in the RStudio IDE under the Tools menu:*
+
+*Tools → Keyboard Shortcuts Help.*
+
+[A full list is also available here...](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
+
+#### Console
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Move cursor to Console	| `Ctrl+`	| `Ctrl+2`
+Clear console	| `Ctrl+L`	| `Ctrl+L`
+Move cursor to beginning of line	| `Home`	| `Command+Left`
+Move cursor to end of line	| `End`	| `Command+Right`
+Navigate command history	| `Up/Down`	| `Up/Down`
+Popup command history	| `Ctrl+Up`	| `Command+Up`
+Interrupt currently executing command	| `Esc`	| `Esc`
+Change working directory	| `Ctrl+Shift+H`	| `Ctrl+Shift+H`
+ 
+#### Source
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Goto File/Function	| `Ctrl+.`	| `Ctrl+.`
+Move cursor to Source Editor	| `Ctrl+1`	| `Ctrl+1`
+Open document	| `Ctrl+O`	| `Command+O`
+Save active document | `Ctrl+S`	|	`Command+S`
+Close active document (except on Chrome)	| `Ctrl+W`	| `Command+W`
+Close active document (Chrome only)	| `Ctrl+Alt+W`	| `Command+Option+W`
+Close all open documents	| `Ctrl+Shift+W`	| `Command+Shift+W`
+Preview HTML (Markdown and HTML)	| `Ctrl+Shift+K`	| `Command+Shift+K`
+Knit Document (knitr)	| `Ctrl+Shift+K`	| `Command+Shift+K`
+Compile Notebook	| `Ctrl+Shift+K`	| `Command+Shift+K`
+Compile PDF (TeX and Sweave)	| `Ctrl+Shift+K`	| `Command+Shift+K`
+Insert chunk (Sweave and Knitr)	| `Ctrl+Alt+I`	| `Command+Option+I`
+Insert code section	| `Ctrl+Shift+R`	| `Command+Shift+R`
+Run current line/selection	| `Ctrl+Enter`	| `Command+Enter`
+Run current line/selection (retain cursor position)	| `Alt+Enter`	| `Option+Enter`
+Run current document	| `Ctrl+Alt+R`	| `Command+Option+R`
+Run from document beginning to current line	| `Ctrl+Alt+B`	| `Command+Option+B`
+Run from current line to document end	| `Ctrl+Alt+E`	| `Command+Option+E`
+Fold Selected	| `Alt+L`	| `Cmd+Option+L`
+Unfold Selected	| `Shift+Alt+L`	| `Cmd+Shift+Option+L`
+Fold All	| `Alt+O`	| `Cmd+Option+O`
+Unfold All	| `Shift+Alt+O`	| `Cmd+Shift+Option+O`
+Go to line	| `Shift+Alt+G`	| `Cmd+Shift+Option+G`
+Jump to	| `Shift+Alt+J`	| `Cmd+Shift+Option+J`
+Switch to tab	| `Ctrl+Shift+.`	| `Ctrl+Shift+.`
+Previous tab	| `Ctrl+F11`	| `Ctrl+F11`
+Next tab	| `Ctrl+F12`	| `Ctrl+F12`
+First tab	| `Ctrl+Shift+F11`	| `Ctrl+Shift+F11`
+Last tab	| `Ctrl+Shift+F12`	| `Ctrl+Shift+F12`
+Extract function from selection	| `Ctrl+Alt+X`	| `Command+Option+X`
+Extract variable from selection	| `Ctrl+Alt+V`	| `Command+Option+V`
+Reindent lines	| `Ctrl+I`	| `Command+I`
+Comment/uncomment current line/selection	| `Ctrl+Shift+C`	| `Command+Shift+C`
+Transpose Letters	 	|  -  | `Ctrl+T`
+Find and Replace	| `Ctrl+F`	| `Command+F`
+Use Selection for Find	| `Ctrl+F3`	| `Command+E`
+Replace and Find	| `Ctrl+Shift+J`	| `Command+Shift+J`
+Find in Files	| `Ctrl+Shift+F`	| `Command+Shift+F`
+Check Spelling	| `F7`	| `F7`
+ 
+#### Editing (Console and Source)
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Undo	| `Ctrl+Z`	| `Command+Z`
+Redo	| `Ctrl+Shift+Z`	| `Command+Shift+Z`
+Cut	| `Ctrl+X`	| `Command+X`
+Copy	| `Ctrl+C`	| `Command+C`
+Paste	| `Ctrl+V`	| `Command+V`
+Select All	| `Ctrl+A`	| `Command+A`
+Jump to Word	| `Ctrl+Left/Right`	| `Option+Left/Right`
+Jump to Start/End	| `Ctrl+Home/End` or `Ctrl+Up/Down`	| `Command+Home/End` or `Command+Up/Down`
+Delete Line	| `Ctrl+D`	| `Command+D`
+Select	| `Shift+[Arrow]`	| `Shift+[Arrow]`
+Select Word	| `Ctrl+Shift+Left/Right`	| `Option+Shift+Left/Right`
+Select to Line Start	| `Alt+Shift+Left`	| `Command+Shift+Left`
+Select to Line End	| `Alt+Shift+Right`	| `Command+Shift+Right`
+Indent	| `Tab (at beginning of line)`	| `Tab (at beginning of line)`
+Outdent	| `Shift+Tab`	| `Shift+Tab`
+Insert currently yanked text	| `Ctrl+Y`	| `Ctrl+Y`
+Insert assignment operator	| `Alt+-`	| `Option+-`
+Insert pipe operator	| `Ctrl+Shift+M`	| `Cmd+Shift+M`
+Show help for function at cursor	| `F1`	| `F1`
+ 
+#### Completions (Console and Source)
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Attempt completion	| `Tab` or `Ctrl+Space`	| `Tab` or `Command+Space`
+Navigate candidates	| `Up/Down`	| `Up/Down`
+Accept selected candidate	| `Enter`, `Tab`, or `Right`	| `Enter`, `Tab`, or `Right`
+Dismiss completion popup	| `Esc`	| `Esc`
+ 
+#### Views
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Move focus to Source Editor	| `Ctrl+1`	| `Ctrl+1`
+Move focus to Console	| `Ctrl+2`	| `Ctrl+2`
+Move focus to Help	| `Ctrl+3`	| `Ctrl+3`
+Show History	| `Ctrl+4`	| `Ctrl+4`
+Show Files	| `Ctrl+5`	| `Ctrl+5`
+Show Plots	| `Ctrl+6`	| `Ctrl+6`
+Show Packages	| `Ctrl+7`	| `Ctrl+7`
+Show Environment	| `Ctrl+8`	| `Ctrl+8`
+Show Git/SVN	| `Ctrl+9`	| `Ctrl+9`
+Show Build	| `Ctrl+0`	| `Ctrl+0`
+Sync Editor & PDF Preview	| `Ctrl+F8`	| `Cmd+F8`
+Show Keyboard Shortcut Reference	| `Alt+Shift+K`	| `Option+Shift+K`
+ 
+#### Plots
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Previous plot	| `Ctrl+Alt+F11`	| `Command+Option+F11`
+Next plot	| `Ctrl+Alt+F12`	| `Command+Option+F12`
+ 
+#### Git/SVN
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Diff active source document	| `Ctrl+Alt+D`	| `Ctrl+Option+D`
+Commit changes	| `Ctrl+Alt+M`	| `Ctrl+Option+M`
+Scroll diff view	| `Ctrl+Up/Down`	| `Ctrl+Up/Down`
+Stage/Unstage (Git)	| `Spacebar`	| `Spacebar`
+Stage/Unstage and move to next (Git)	| `Enter`	| `Enter`
+ 
+#### Session
+
+Description	| Windows & | Linux	Mac
+----- | ----- | -----
+Quit Session (desktop only)	| `Ctrl+Q`	| `Command+Q`
+Restart R Session	| `Ctrl+Shift+F10`	| `Command+Shift+F10`
 

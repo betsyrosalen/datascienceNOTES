@@ -14,9 +14,15 @@ numeric | Float |
 integer | Int | 
 logical | Bool | 
 
-`is.datatyppe` will return TRUE or FALSE
+`is.datatype` will return TRUE or FALSE
 
 `as.datatype` will convert from the original datatype to the one specified
+
+`class(x)` will return the datatype of x
+
+`is.na` tests for NA (missing) values
+
+`is.null` tests for NULL values
 
 Can coerce data from lower end without loss of precision to uppper end but not the other way around.
 
@@ -24,13 +30,38 @@ Can coerce data from lower end without loss of precision to uppper end but not t
 
 R | Python | Notes
 ----- | ----- | -----
-factor |  | Like Python dictionaries but has levels as well, can be ordered
+factor |  | kinda like Python dictionaries but has levels as well, can be ordered
 date |  | 
 vector  |  | all R primitives are technically vectors and can have length
-list |  | 
+list |  list | 
 data.frame |  | 
 
 There is no `is.date` function.
+
+## Variables
+
+### Assignment
+
+`x <- 5` or `5 -> x`
+
+`a <- b <- 36`
+
+`assign('y', 42)` 
+
+Variable names can use any conbination of alphanumeric characters, periods and underscores, but they cannot *start* with a number or underscore.
+
+Note - single and double quotes can be used interchangeably like in Python.
+
+### Remove
+
+`remove(var)` or `rm(var)`
+
+## Vectors
+
+`c(1, 2, 3, 4, 5)`
+
+`length(v)`
+
 
 
 ## Built-in Functions
@@ -73,18 +104,21 @@ Operator | Description
 `x` | y | x OR y
 `x & y` | x AND y
 `isTRUE(x)` | test if X is TRUE
+`any(v1 < v2)` | checks if any item in a vector is less than the corresponding item in a second vector
+`all(v1 < v2)` | checks if all items in a vector are less than the corresponding items in a second vector
 
 ### Character Functions
 
 Function | Description
 ----- | -----
+`nchar(x)` | returns the number of characters in x (works on character and numeric datatypes even withint vectors, will not work on factors)
+`toupper(x)` | Uppercase
+`tolower(x)` | Lowercase
 `substr(x, start=n1, stop=n2)` | Extract or replace substrings in a character vector.<br>x <- "abcdef" <br>substr(x, 2, 4) is "bcd" <br>substr(x, 2, 4) <- "22222" is "a222ef"
 `grep(pattern, x , ignore.case=FALSE, fixed=FALSE)` | Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices.<br>grep("A", c("b","A","c"), fixed=TRUE) returns 2
 `sub(pattern, replacement, x, ignore.case =FALSE, fixed=FALSE)` | Find pattern in x and replace with replacement text. If fixed=FALSE then pattern is a regular expression.<br>If fixed = T then pattern is a text string. <br>sub("\\s",".","Hello There") returns "Hello.There"
 `strsplit(x, split)` | Split the elements of character vector x at split. 
 `strsplit("abc", "")` | returns 3 element vector "a","b","c"<br>paste(..., sep="") | Concatenate strings after using sep string to seperate them.<br>paste("x",1:3,sep="") returns c("x1","x2" "x3")<br>paste("x",1:3,sep="M") returns c("xM1","xM2" "xM3")<br>paste("Today is", date())
-`toupper(x)` | Uppercase
-`tolower(x)` | Lowercase
 
 ### Basic Statistical Functions
 
@@ -146,6 +180,7 @@ R Comand | Description
 `install.package(package_name)` | installs package
 `library(package_name)` or <br>`require(package_name)`  | loads package into memory
 `?function_name` | Displays the documentation for the function in the viewer window in RStudio
+`apropos('func')` | to search for a function by only part of the name
 `getwd()` | get the working directory
 `setwd("file\path")` | set the working directory
 `str(dataframe)` | returns the structure of the dataframe
@@ -158,6 +193,7 @@ R Comand | Description
 `barplot(table(df$var), las=3)` | Creates a bargraph of the values of the variable
 `plot(x = df$var1, y = df$var2)` | Creates a scatterplot of the two variables<br> Technically you don't need the x= and y= as long as you put them first and in that order because by default the first 2 arguments are for the x and y variables
 `plot(df$var1, df$var2, type = "l")` | Creates a linegraph of the two variables
+`hist(x)` | Creates a histogram of ththe single variable x
 `df$totals <- df$var1 + df$var2` | Creates a new column and puts the total of var1 and var2 in that column
 `df[which.max(df$var),]` | Finds the row with max in specified variable column
 
