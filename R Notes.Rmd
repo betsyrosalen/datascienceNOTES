@@ -15,62 +15,134 @@ output:
 
 R | Python | Notes
 ----- | ----- | -----
-character | Str | 
-complex | ??? | includes imaginary numbers
-numeric | Float | 
-integer | Int | 
-logical | Bool | 
+`character` | Str | 
+`complex` | ??? | includes imaginary numbers
+`numeric` | Float | 
+`integer` | Int | 
+`logical` | Bool | 
 
-`is.datatype` will return TRUE or FALSE
-
-`as.datatype` will convert from the original datatype to the one specified
-
-`class(x)` will return the datatype of x
-
-`is.na` tests for NA (missing) values
-
-`is.null` tests for NULL values
+Function | Description
+----- | -----
+`is.datatype` | will return TRUE or FALSE
+`as.datatype` | will convert from the original datatype to the one specified
+`class(x)` | will return the datatype of x
+`is.na` | tests for NA (missing) values
+`is.null` | tests for NULL values
 
 Can coerce data from lower end without loss of precision to uppper end but not the other way around.
 
 ### Non-Primitives
 
 R | Python | Notes
------ | ----- | -----
-factor |  | kinda like Python dictionaries but has levels as well, can be ordered
-date |  | 
-vector  |  | all R primitives are technically vectors and can have length
-list |  list | 
-matrix |  | 
-data.frame |  | 
+------------- | -------------------------- | --------------------------
+`factor` | not available | kinda like Python dictionaries but has levels as well, can be ordered
+`date` | datetime | 
+`vector`  | list (all same datatype) | all R primitives are technically vectors and can have length.  Values in a vector must be all the same datatype
+`list` |  list | 
+`matrix` | not available - Maybe with Pandas? | all data must be of the same type
+`data.frame` | not available - Need pandas |  Each column can be a different datatype
 
 There is no `is.date` function.
+
+#### Note about factors
+
+The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a limited number of categories. A continuous variable, on the other hand, can correspond to an infinite number of values.
+
+It is important that R knows whether it is dealing with a continuous or a categorical variable, as the statistical models you will develop in the future treat both types differently.
 
 ## Entering Data in R
 
 ### Vectors
 
 R Comand | Description
------ | -----
+----------------------- | --------------------------------
 `x <- 0:10` | Assigns numbers 0 through 10 to x in a vector
 `y <- c(1,2,5,3,7,8,4,9,0)` | Assigns the vector to y
+`seq(from , to, by)` | generate a sequence<br>indices <- seq(1, 10, 2) <br># indices is c(1, 3, 5, 7, 9)
+`rep(x, ntimes)` | repeat x n times<br>y <- rep(1:3, 2) <br># y is c(1, 2, 3, 1, 2, 3)
+
+#### Other Useful Functions for creating and working with Vectors
 
 Function | Description
------ | -----
+------------------ | ----------------------------------------
+`names(v) <- c('one', 'two', 'three')` | Assigns names to the values in the vector
+`names(vector)` | Returns the names of all the values in the vector
+`names(v)[3]` | returns the name of the the value in the third index of the vector
+`v['one']` | returns the name and the value in the index named one
+`v[c("Mon", "Tues", "Wed")]` | returns the name and the value in the indices named "Mon", "Tues", and "Wed"
 `length(vector)` | returns the length of the vector
+`cut(x, n)` | divide continuous variable in factor with n levels y <- cut(x, 5)
 
-### Data Frames
+#### Creating a selection vector
 
 ```{r}
+vector <- c(1, 2, -4, 5, -6)
+selection_vector <- vector > 0
+selection <- vector[selection_vector]
+selection
+```
+
+### Factors
+
+To create a factor, first create a vector with all your values, then use the `factor()` function to convert it to a factor.  To set the levels of an ordinal categorical value while you are creating a factor, use `factor(vector, order= TRUE, levels = c("Low", "Medium", "High")`.  To set the levels after the factor is already created, use `levels(factor) <- c("name1", "name2",...)`.  You can also use this to change the names of the levels.  Watch out: the order with which you assign the levels is matters.  Alternatively you can specify the associations like this: `levels(factor) <- c('F' = "Female", 'M' = "Male")`
+
+### Lists
+
+Lists can contain anything!  (Just like Python)
+
+```{r}
+# Vector with numerics from 1 up to 10
+my_vector <- 1:10 
+
+# Matrix with numerics from 1 up to 9
+my_matrix <- matrix(1:9, ncol = 3)
+
+# First 10 elements of the built-in data frame mtcars
+my_df <- mtcars[1:10,]
+
+# names are optional but useful!
+my_list <- list(vec = my_vector, mat = my_matrix, df = my_df)
+my_list
+```
+
+Indexing lists in R needs double brackets.
+
+```{r}
+my_list[[2]]
+```
+
+Other indexing syntax...
+
+```{r}
+my_list[["vec"]]
+my_list$df
+my_list[['df']][2:3,]
+```
+
+### Matrices and Data Frames
+
+```{r}
+# Dataframes can store vectors of different types
 x <- 1:3
 y <- 4:6
 z <- c('seven', 'eight', 'nine')
-DF <- data.frame(x, y, z, stringsAsFactors = FALSE)
-DF
+df <- data.frame(x, y, z, stringsAsFactors = FALSE)
+df
+names(df) <- c('one', 'two', 'three')
+df
+# Matrices must be all of the same type
+v <- 7:9
+c <- c("one", "two", "three")
+mat <- matrix(c(x, y, v), byrow = TRUE, nrow = 3)
+mat
+mat2 <- matrix(c(c, z), byrow = TRUE, nrow = 2)
+mat2
+names(mat) <- c('one', 'two', 'three')
+mat
 ```
 
 Function | Description
------ | -----
+------------------ | --------------------------------------------
 `nrow(dataframe)` | returns the number of rows
 `ncol(dataframe)` | returns the number of columns
 `str(dataframe)` | returns the structure of the dataframe
@@ -79,15 +151,26 @@ Function | Description
 `tail(df, 5)` | returns the last 5 rows of the dataframe
 `names(dataframe)` | Returns the names of the columns or variabes in the dataframe
 `names(df)[3]` | returns the third column name
-`names(DF) <- c('one', 'two', 'three')` | Assigns names to the columns in the dataframe
+`names(df) <- c('one', 'two', 'three')` | Assigns names to the columns in the dataframe or **values** in a matrix
+`rownames(matrix_df) <- row_names_vector` | Assigns names to the rows in the matrix/dataframe
+`colnames(matrix_df) <- col_names_vector` | Assigns names to the columns in the matrix/dataframe
 `rownames(dataframe)` | Returns the names of the rows in the dataframe
-`rownames(df) <- c('one', 'two')` | Assigns names to the rows in the dataframe
+`colnames(dataframe)` | Returns the names of the columns in the dataframe
 `rownames(df) <- NULL` | resets to generic index names
+`colnames(df) <- NULL` | resets to generic names
 `rowSums(df)` | Just what it sounds like
 `colSums(df)` | Just what it sounds like
+`rbind(df, df2)` | combines two dataframes or vectors adding the second one as additional rows to the first
+`cbind(df, df2)` | combines two dataframes or vectors adding the second one as additional columns to the first
 `dataframe$variable` | Returns all of the values in the specified variable as a ***vector***
 `df$totals <- df$var1 + df$var2` | Creates a new column and puts the total of var1 and var2 in that column
 `df[which.max(df$var),]` | Finds the row with max in specified variable column
+
+#### Note about multiplying matrices
+
+You can multiply each element in a matrix by te corresponding element in another matirx using regular operations i.e. `matrix1 * matrix2`
+
+This is not the standard matrix multiplication for which you should use `%*%` in R.
 
 ### data.table
 
@@ -96,8 +179,8 @@ library(data.table, quietly = TRUE)
 x <- 1:3
 y <- 4:6
 z <- c('seven', 'eight', 'nine')
-DF <- data.table(x, y, z) # strings are automatically characters not factors
-DF
+DT <- data.table(x, y, z) # strings are automatically characters not factors
+DT
 ```
 
 data.table 1.10.4.3
@@ -220,7 +303,7 @@ Function | Description
 `median(x)` | median
 `var(x)` | variance
 `sd(x)` | standard deviation of object(x). <br>also look at var(x) for variance and mad(x) for median absolute deviation.
-`summary(x)` | Returns Min, Max, 1st Qtr, 3rd Qtr, Median, Mean and num of missing values - N0 SD
+`summary(x)` | Returns Min, Max, 1st Qtr, 3rd Qtr, Median, Mean and num of missing values - N0 SD.  Can be used with factors, but not categorical vectors
 `quantile(x, probs)` | quantiles where x is the numeric vector whose quantiles are desired <br>and probs is a numeric vector with probabilities in [0,1].<br># 30th and 84th percentiles of x<br>y <- quantile(x, c(.3,.84))
 `fivenum(x)` | min, 1st, 2nd, 3rd Quartiles, and Max
 `IQR(x)` | Spread between 25th and 75th percentile
@@ -242,14 +325,6 @@ Function | Description
 `dbinom(x, size, prob)`<br>`pbinom(q, size, prob)`<br>`qbinom(p, size, prob)`<br>`rbinom(n, size, prob)` | binomial distribution where size is the sample size and prob is the probability of a heads (pi) <br># prob of 0 to 5 heads of fair coin out of 10 flips<br>dbinom(0:5, 10, .5)<br># prob of 5 or less heads of fair coin out of 10 flips
 `pbinom(5, 10, .5)`<br>`dpois(x, lamda)`<br>`ppois(q, lamda)`<br>`qpois(p, lamda)<br>rpois(n, lamda)` | poisson distribution with m=std=lamda<br># probability of 0,1, or 2 events with lamda=4<br>dpois(0:2, 4)<br># probability of at least 3 events with lamda=4 <br>1- ppois(2,4)
 `dunif(x, min=0, max=1)`<br>`punif(q, min=0, max=1)`<br>`qunif(p, min=0, max=1)`<br>`runif(n, min=0, max=1)` | uniform distribution, follows the same pattern as the normal distribution above. <br># 10 uniform random variates<br>x <- runif(10)
-
-### Other Useful Functions
-
-Function | Description
------ | -----
-`seq(from , to, by)` | generate a sequence<br>indices <- seq(1, 10, 2) <br># indices is c(1, 3, 5, 7, 9)
-`rep(x, ntimes)` | repeat x n times<br>y <- rep(1:3, 2) <br># y is c(1, 2, 3, 1, 2, 3)
-`cut(x, n)` | divide continuous variable in factor with n levels y <- cut(x, 5)
 
 Note that while the examples on this page apply functions to individual variables, many can be applied to vectors and matrices as well.
 
@@ -277,7 +352,9 @@ can be chained together
 
 z %>% is.na %>% sum
 
-## Reading R data from CSV
+## Reading data into R
+
+### From CSV
 
 `read.csv("file/location", header = F)`
 
@@ -285,7 +362,7 @@ Must use double backslash or forward slashes.
 
 `header = F` means the original file has no header
 
-## Reading R data from SPSS
+### From SPSS
 
 Use Foreign Package
 
@@ -295,7 +372,7 @@ library(foreign)
 df <- read.spss("file/location", to.data.frame=T, use.value.labels=T)
 ```
 
-## Reading R data from GitHub
+### From GitHub
 
 Here is some sample code for reading R from a dataset that has been posted in a GitHub repository:
 
@@ -428,7 +505,7 @@ newdata <- mydata[c(-3,-5)]
 mydata$v3 <- mydata$v5 <- NULL
 ```
 
-### Selecting Observations in in data.frame
+### Selecting Observations in a data.frame
 
 ```
 # first 5 observations
@@ -474,7 +551,7 @@ newdata <- subset(mydata, sex=="m" & age > 25,
 select=weight:income)
 ```
 
-To practice the subset() function, try this this [interactive exercise](https://campus.datacamp.com/courses/data-table-data-manipulation-r-tutorial/chapter-one-datatable-novice?ex=7#skiponboarding). on subsetting data.tables.
+**Note:** Column names do not need quotes, but values do.
 
 ### Aggragting Data
 
@@ -489,10 +566,80 @@ aggregate(cbind(price, carat) ~ cut, diamonds, mean, na.rm=TRUE)
 
 Keep in mind that *plyr*, *dplyr*, and *data.table* are faster.
 
-#### plyr
-
 ### Ordering Data
 
 ```
+# returns a vecor of index postions
 order(data$var, decreasing=TRUE)
 ```
+## tidyverse
+
+### tidyr
+
+#### gather()
+
+#### spread()
+
+#### separate()
+
+#### unite()
+
+### dplyr
+
+Dplyr does not change the original dataset.
+
+Convert a dataframe into a tbl (tibble)
+
+```
+df <- tbl_df(df)
+```
+
+See structure but better than str()!
+
+```
+glimpse(df)
+```
+
+Use a lookup table to convert codes to values
+
+```
+# The lookup table
+lut <- c("A" = "carrier", "B" = "weather", "C" = "FFA", "D" = "security", "E" = "not cancelled")
+
+# Add the Code column
+hflights$Code <- lut[hflights$CancellationCode]
+```
+
+#### select()
+
+Returns a subset of the columns. Variable names do not need quotes.
+
+```
+select(df, col1, col2, col3, ...)
+```
+
+#### filter() 
+
+Returns a subset of the rows.
+
+#### mutate()
+
+Adds new variables(columns) that are functions of existing variables.
+
+#### arrange() 
+
+Reorders the rows according to single or multiple variables.
+
+#### summarise() 
+
+Condenses multiple values to a single value. Reduces each group to a single row by calculating aggregate measures.
+
+#### sample_n() and sample_frac() 
+
+to take random samples.
+
+#### rename()
+
+#### transmute()
+
+## ggplot2
