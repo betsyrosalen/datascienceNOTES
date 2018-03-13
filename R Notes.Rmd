@@ -154,6 +154,12 @@ R Comand | Description
 `apropos('func')` | to search for a function by only part of the name
 `getwd()` | get the working directory
 `setwd("file\path")` | set the working directory
+`vignette(package="package_name")` | To see a list of 'vignettes' or sample code for a package
+`vignette("vin_name", package="pack_name")` | to view a specific vignette
+`data(package="package_name")$results` | to see the datasets that come with a package
+`data(dataset_name)` | to load data - note it does not show up in the "Data" section of your environment in RStudio until you use the data in another function like `head(data)` or `dim(data)`
+
+**Note:** Putting parenthases around your code is equivalent to the print function
 
 ### Numeric Functions
 
