@@ -226,7 +226,7 @@ This section taken from <https://www.statmethods.net/management/functions.html> 
 **Tip:** If you use the up and down arrow keys, you can scroll through your previous commands, your so-called command history. You can also access it by clicking on the history tab in the upper right panel. This will save you a lot of typing in the future.
 
 R Comand | Description
------ | -----
+-------------------- | ----------------------------------------
 `ctrl + L` | to clear console
 `ls()` | list the objects in memory to the console
 `library()` | Lists the packages in your library
@@ -247,7 +247,7 @@ R Comand | Description
 ### Numeric Functions
 
 Function | Description
------ | -----
+--------------- | ----------------------------------------
 `+`, `-`, `*`, `/` | addition, subtraction, multiplication, division
 `x %% y` | modulo or remainder of division of x by y
 `x %/% y` | integer division - number of times y goes into x without remainder
@@ -267,7 +267,7 @@ Function | Description
 ### Logical Operators
 
 Operator | Description
------ | -----
+---------- | ---------------------------------------------
 `<` | less than
 `<=` | less than or equal to
 `>` | greater than
@@ -275,8 +275,9 @@ Operator | Description
 `==` | exactly equal to
 `!=` | not equal to
 `!x` | Not x
-`x` | y | x OR y
+`x | y` | x OR y
 `x & y` | x AND y
+`x %in% c(a, b, c)` | TRUE if x is in the vector c(a, b, c)
 `isTRUE(x)` | test if X is TRUE
 `any(v1 < v2)` | checks if any item in a vector is less than the corresponding item in a second vector
 `all(v1 < v2)` | checks if all items in a vector are less than the corresponding items in a second vector
@@ -285,7 +286,7 @@ Operator | Description
 ### Character Functions
 
 Function | Description
------ | -----
+--------------- | ----------------------------------------
 `nchar(x)` | returns the number of characters in x (works on character and numeric datatypes even withint vectors, will not work on factors)
 `toupper(x)` | Uppercase
 `tolower(x)` | Lowercase
@@ -293,14 +294,15 @@ Function | Description
 `grep(pattern, x , ignore.case=FALSE, fixed=FALSE)` | Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices.<br>grep("A", c("b","A","c"), fixed=TRUE) returns 2
 `sub(pattern, replacement, x, ignore.case =FALSE, fixed=FALSE)` | Find pattern in x and replace with replacement text. If fixed=FALSE then pattern is a regular expression.<br>If fixed = T then pattern is a text string. <br>sub("\\s",".","Hello There") returns "Hello.There"
 `strsplit(x, split)` | Split the elements of character vector x at split. 
-`strsplit("abc", "")` | returns 3 element vector "a","b","c"<br>paste(..., sep="") | Concatenate strings after using sep string to seperate them.<br>paste("x",1:3,sep="") returns c("x1","x2" "x3")<br>paste("x",1:3,sep="M") returns c("xM1","xM2" "xM3")<br>paste("Today is", date())
+`strsplit("abc", "")` | returns 3 element vector "a","b","c"<br>
+`paste(..., sep="")` | Concatenate strings after using sep string to seperate them.<br>paste("x",1:3,sep="") returns c("x1","x2" "x3")<br>paste("x",1:3,sep="M") returns c("xM1","xM2" "xM3")<br>paste("Today is", date())<br>paste(Year, Month, DayofMonth, sep="-")
 
 ### Basic Statistical Functions
 
 Basic statistical functions are provided in the following table. Each has the option na.rm to strip missing values before calculations. Otherwise the presence of missing values will lead to a missing result. Object can be a numeric vector or data frame.
 
 Function | Description
------ | -----
+-------------------- | ----------------------------------------
 `min(x)` | minimum
 `max(x)` | maximum
 `sum(x)` | sum
@@ -323,7 +325,7 @@ Function | Description
 The following table describes functions related to probaility distributions. For random number generators below, you can use set.seed(1234) or some other integer to create reproducible pseudo-random numbers.
 
 Function | Description
------ | -----
+-------------------- | ----------------------------------------
 `dnorm(x)` | normal density function (by default m=0 sd=1)<br># plot standard normal curve<br>x <- pretty(c(-3,3), 30)<br>y <- dnorm(x)<br>plot(x, y, type='l', xlab="Normal Deviate", ylab="Density", yaxs="i")
 `pnorm(q)` | cumulative normal probability for q <br>(area under the normal curve to the left of q)<br>pnorm(1.96) is 0.975
 `qnorm(p)` | normal quantile. <br>value at the p percentile of normal distribution <br>qnorm(.9) is 1.28 # 90th percentile 
@@ -337,7 +339,7 @@ Note that while the examples on this page apply functions to individual variable
 ### Creating Tables and Graphs
 
 Function | Description
------ | -----
+-------------------- | ----------------------------------------
 `table(df$var1, useNA='ifany')` | Creates a table of sums of each value for the variable
 `table(df$var1, df$var2, useNA='ifany')` | Creates a table of sums of the inersection of the two variables
 `prop.table(table(df$var))` | Creates a table of the proportion of each value for the variable
@@ -578,20 +580,24 @@ Keep in mind that *plyr*, *dplyr*, and *data.table* are faster.
 # returns a vecor of index postions
 order(data$var, decreasing=TRUE)
 ```
+<<<<<<< HEAD
 
 ## tidyverse
+=======
+# tidyverse
+>>>>>>> 0e39a6a808dec35bb2f338b600b85f4c40a6938f
 
-### tidyr
+## tidyr
 
-#### gather()
+### gather()
 
-#### spread()
+### spread()
 
-#### separate()
+### separate()
 
-#### unite()
+### unite()
 
-### dplyr
+## dplyr
 
 Dplyr does not change the original dataset.
 
@@ -617,7 +623,7 @@ lut <- c("A" = "carrier", "B" = "weather", "C" = "FFA", "D" = "security", "E" = 
 hflights$Code <- lut[hflights$CancellationCode]
 ```
 
-#### select()
+### select()
 
 Returns a subset of the columns. Variable names do not need quotes.
 
@@ -625,6 +631,7 @@ Returns a subset of the columns. Variable names do not need quotes.
 select(df, col1, col2, col3, ...)
 ```
 
+<<<<<<< HEAD
 ##### Helper functions for variable selection
 dplyr comes with a set of helper functions that can help you select groups of variables inside a `select()` call:
 
@@ -640,27 +647,70 @@ Function | Description
 Pay attention here: When you refer to columns directly inside select(), you don't use quotes. If you use the helper functions, you do use quotes.
 
 #### filter() 
+=======
+### filter() 
+>>>>>>> 0e39a6a808dec35bb2f338b600b85f4c40a6938f
 
 Returns a subset of the rows.
 
-#### mutate()
+```
+# filters df so that only the observations for which col1 is equal to 1 are kept
+filter(df, col1 == 1)
+```
+
+Boolean operators can be used to combine multiple logical tests into a single test. These include & (and), | (or), and ! (not). Instead of using the & operator, you can also pass several logical tests to filter(), separated by commas. 
+
+```
+# Exactly the same output
+filter(df, a > 0 & b > 0)
+filter(df, a > 0, b > 0)
+```
+
+To keep the observations for which the variable x is not NA:
+
+```
+filter(df, !is.na(x))
+```
+
+***Don't forget to use the double equal sign!***
+
+### mutate()
 
 Adds new variables(columns) that are functions of existing variables.
 
-#### arrange() 
+```
+# Adds a new column x that is a function of y and z
+mutate(df, x = y - z)
+
+# Adds a new column x that is a function of y and z
+# and second new column a that is a function of b and c
+mutate(df, x = y - z, a = b + c)
+```
+
+### arrange() 
 
 Reorders the rows according to single or multiple variables.
 
-#### summarise() 
+Ascending by default
+
+```
+# first by var1 asc 
+# then by var2 desc, 
+# then by the sum of x and y
+arrange(df, var1, desc(var2), x + y)
+
+```
+
+### summarise() 
 
 Condenses multiple values to a single value. Reduces each group to a single row by calculating aggregate measures.
 
-#### sample_n() and sample_frac() 
+### sample_n() and sample_frac() 
 
 to take random samples.
 
-#### rename()
+### rename()
 
-#### transmute()
+### transmute()
 
 ## ggplot2
