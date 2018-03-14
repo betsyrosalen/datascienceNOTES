@@ -7,6 +7,11 @@ output:
     toc: yes
 ---
 
+```{r include=FALSE}
+library(tidyverse)
+```
+
+
 ## Data Types in R (vs. Python)
 
 ### Primitives
@@ -306,6 +311,7 @@ Function | Description
 `min(x)` | minimum
 `max(x)` | maximum
 `sum(x)` | sum
+`diff(x)` | difference
 `range(x)` | range
 `mean(x, trim=0,<br>na.rm=FALSE)` | mean of object x<br># trimmed mean, removing any missing values and <br># 5 percent of highest and lowest scores <br>mx <- mean(x,trim=.05,na.rm=TRUE)
 `median(x)` | median
@@ -315,6 +321,8 @@ Function | Description
 `quantile(x, probs)` | quantiles where x is the numeric vector whose quantiles are desired <br>and probs is a numeric vector with probabilities in [0,1].<br># 30th and 84th percentiles of x<br>y <- quantile(x, c(.3,.84))
 `fivenum(x)` | min, 1st, 2nd, 3rd Quartiles, and Max
 `IQR(x)` | Spread between 25th and 75th percentile
+`rank(x)` | takes a group of values and calculates the rank of each value within the group
+`diff(range(x))` | total range of vector x
 `diff(x, lag=1)` | lagged differences, with lag indicating which lag to use
 `scale(x, center=TRUE, scale=TRUE)` | 	column center or standardize a matrix.
 
@@ -347,18 +355,6 @@ Function | Description
 `plot(x = df$var1, y = df$var2)` | Creates a scatterplot of the two variables<br> Technically you don't need the x= and y= as long as you put them first and in that order because by default the first 2 arguments are for the x and y variables
 `plot(df$var1, df$var2, type = "l")` | Creates a linegraph of the two variables
 `hist(x)` | Creates a histogram of the single variable x
-
-## Writing Functions
-
-### Pipes
-
-Pipes require the *magrittr* or *dplyr* package.
-
-`x %>% mean(na.rm=TRUE)` passes the x variable in to the first argument in the mean function
-
-can be chained together
-
-z %>% is.na %>% sum
 
 ## Reading data into R
 
@@ -647,7 +643,7 @@ Returns a subset of the rows.
 
 ```
 # filters df so that only the observations for which col1 is equal to 1 are kept
-filter(df, col1 == 1)
+filter(df, col1 == 1, col2 != 1)
 ```
 
 Boolean operators can be used to combine multiple logical tests into a single test. These include & (and), | (or), and ! (not). Instead of using the & operator, you can also pass several logical tests to filter(), separated by commas. 
@@ -697,12 +693,95 @@ arrange(df, var1, desc(var2), x + y)
 
 Condenses multiple values to a single value. Reduces each group to a single row by calculating aggregate measures.
 
+```
+summarise(df, min = min(x), avg = mean(y))
+```
+
+#### dplyr aggregate functions
+
+dplyr provides several helpful aggregate functions of its own, in addition to the ones that are already defined in R. These include:
+
+Function | Description
+----------------------- | -----------------------
+`first(x)` | The first element of vector x.
+`last(x)` | The last element of vector x.
+`nth(x, n)` | The nth element of vector x.
+`n()` | The number of rows in the data.frame or group of observations that summarise() describes.
+`n_distinct(x)` | The number of unique values in vector x.
+
+Next to these dplyr-specific functions, you can also turn a logical test into an aggregating function with `sum()` or `mean()`. A logical test returns a vector of `TRUE`'s and `FALSE`'s. When you apply `sum()` or `mean()` to such a vector, R coerces each `TRUE` to a 1 and each `FALSE` to a 0. `sum()` then represents the total number of observations that passed the test; `mean()` represents the proportion.
+
+```{r}
+mpg2 <- (mtcars$mpg > 20)
+mpg2
+# number and proportion of cars that get greater than 20 mpg
+summarise(mtcars, tot = n(), num = sum(mpg2), avg = mean(mpg2))
+```
+
+### Pipes
+
+Pipes require the *magrittr* or *dplyr* package.
+
+`x %>% mean(na.rm=TRUE)` passes the x variable in to the first argument in the mean function
+
+can be chained together `z %>% is.na %>% sum`
+
+```
+hflights %>%
+  mutate(diff =  TaxiOut - TaxiIn) %>%
+  filter(!is.na(diff)) %>%
+  summarise(avg = mean(diff))
+```
+
+### group_by() 
+
+Most useful when using `summarise()` after grouping.
+
+```{r}
+mtcars %>%
+  group_by(cyl) %>%
+  summarise(avg_mpg = mean(mpg))
+```
+
+### Putting it all together!
+
+```
+hflights %>%
+  group_by(TailNum) %>%
+  summarise(num = n_distinct(Dest)) %>%
+  filter(num == 1) %>%
+  summarise(nplanes = n())
+
+# Find the most visited destination for each carrier
+hflights %>%
+  group_by(UniqueCarrier, Dest) %>%
+  summarise(n = n()) %>%
+  mutate(rank = rank(desc(n))) %>%
+  filter(rank == 1)
+```
+
 ### sample_n() and sample_frac() 
 
-to take random samples.
+to display random samples from your data.
+
+```{r}
+# display exactly 5 random rows
+sample_n(mtcars, 5, replace = FALSE)
+# display 5 percent of your data rows selected at random
+sample_frac(mtcars, 0.05, replace = FALSE)
+```
 
 ### rename()
 
 ### transmute()
+
+### Connecting dplyr to a data table or database
+
+to save data as a data table
+
+```
+library(data.table)
+hflights2 <- as.data.table(hflights)
+```
 
 ## ggplot2
