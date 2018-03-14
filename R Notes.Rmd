@@ -580,12 +580,8 @@ Keep in mind that *plyr*, *dplyr*, and *data.table* are faster.
 # returns a vecor of index postions
 order(data$var, decreasing=TRUE)
 ```
-<<<<<<< HEAD
 
-## tidyverse
-=======
 # tidyverse
->>>>>>> 0e39a6a808dec35bb2f338b600b85f4c40a6938f
 
 ## tidyr
 
@@ -631,8 +627,7 @@ Returns a subset of the columns. Variable names do not need quotes.
 select(df, col1, col2, col3, ...)
 ```
 
-<<<<<<< HEAD
-##### Helper functions for variable selection
+#### Helper functions for variable selection
 dplyr comes with a set of helper functions that can help you select groups of variables inside a `select()` call:
 
 Function | Description
@@ -646,10 +641,7 @@ Function | Description
 
 Pay attention here: When you refer to columns directly inside select(), you don't use quotes. If you use the helper functions, you do use quotes.
 
-#### filter() 
-=======
 ### filter() 
->>>>>>> 0e39a6a808dec35bb2f338b600b85f4c40a6938f
 
 Returns a subset of the rows.
 
