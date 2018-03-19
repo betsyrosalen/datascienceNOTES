@@ -252,6 +252,35 @@ if(condition1=TRUE){
 ```
 while (condition) {
   expr
+  increment
+}
+```
+
+Can nest if statements inside
+
+```
+while (condition) {
+  if(condition=TRUE){
+    expr
+  }
+  increment
+}
+```
+
+### For Loop
+
+```
+for (var in seq) {
+  expr
+}
+```
+
+```
+for (var in seq) {
+  if(condition=TRUE){
+    next #skips this loop if condition is met
+  }
+  expr
 }
 ```
 
@@ -273,6 +302,7 @@ R Comand | Description
 `library(package_name)` or <br>`require(package_name)`  | loads package into memory
 `?function_name` | Displays the documentation for the function in the viewer window in RStudio
 `apropos('func')` | to search for a function by only part of the name
+`args(func)` | To get information about the function arguments
 `getwd()` | get the working directory
 `setwd("file\path")` | set the working directory
 `vignette(package="package_name")` | To see a list of 'vignettes' or sample code for a package
