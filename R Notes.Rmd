@@ -220,11 +220,37 @@ Note - single and double quotes can be used interchangeably like in Python.
 
 `remove(var)` or `rm(var)`
 
+## Writing functions and conditional statements
+
+### If Else
+
+```
+# If statement alone
+if(condition=TRUE){
+  code to run
+}
+
+# If Else statement
+if(condition=TRUE){
+  code to run
+} else {
+  code to run if condition=FALSE
+}
+
+# If, Else If, Else statement
+if(condition1=TRUE){
+  code to run if condtion1=TRUE
+} else if(condition2=TRUE){
+  code to run if condtion1=FALSE but condition2=TRUE
+} else {
+  code to run if both conditions=FALSE
+}
+```
+
+
 ## Built-in Functions
 
 This section taken from <https://www.statmethods.net/management/functions.html> with lots of additions by me.
-
-(To practice working with functions, try the functions sections of this [this interactive course](https://www.datacamp.com/courses/intermediate-r-practice).)
 
 ### Getting Started and Finding Help
 
@@ -343,6 +369,27 @@ Function | Description
 `dunif(x, min=0, max=1)`<br>`punif(q, min=0, max=1)`<br>`qunif(p, min=0, max=1)`<br>`runif(n, min=0, max=1)` | uniform distribution, follows the same pattern as the normal distribution above. <br># 10 uniform random variates<br>x <- runif(10)
 
 Note that while the examples on this page apply functions to individual variables, many can be applied to vectors and matrices as well.
+
+
+#### The R probability functions
+
+<https://www.unc.edu/courses/2008fall/ecol/563/001/images/lectures/lecture3/lecture3.htm#probfunc>
+
+![Fig. 3 The four probability functions for the normal distribution](Images/RNormFunctions.jpg)
+
+There are four basic probability functions for each probability distribution in R. R's probability functions begins with one of four prefixes: d, p, q, or r followed by a root name that identifies the probability distribution. For the normal distribution the root name is "norm". The meaning of these prefixes is as follows.
+
+  - **d** is for "density" and the corresponding function returns the value from the probability density function (continuous) or probability mass function (discrete).
+  - **p** is for "probability" and the corresponding function returns a value from the cumulative distribution function.
+  - **q** is for "quantile" and the corresponding function returns a value from the inverse cumulative distribution function.
+  - **r** is for "random and the corresponding function returns a value drawn randomly from the given distribution.
+  
+To better understand what these functions do we'll focus on the four probability functions for the normal distribution: dnorm, pnorm, qnorm, and rnorm. Fig. 3 illustrates the defining relationships among these four functions.
+
+  - **dnorm** is the normal probability density function. Without any further arguments it returns the density of the standard normal distribution. If you plot dnorm(x) over a range of x-values you obtain the usual bell-shaped curve of the normal distribution. In Fig. 3, the value of dnorm(2) is indicated by the height of the vertical red line segment. It's the just the y-coordinate of the normal curve when x = 2. Keep in mind that density values are not probabilities. To obtain probabilities one needs to integrate the density function over an interval. Alternatively if we consider a very small interval, say one of width ??x, and if f(x) is a probability density function, then it is the case that ![](Images/probdensity.gif)
+  - **pnorm** is the cumulative distribution function for the normal distribution. By definition pnorm(x) = P(X ??? x) and is the area under the normal density curve to the left of x. Fig. 3 shows pnorm(2), the area under the normal density curve to the left of x = 2. As is indicated on the figure, this area is 0.977. So the probability that a standard normal random variate takes on a value less than or equal to 2 is 0.977
+  - **qnorm** is the quantile function of the standard normal distribution. If qnorm(x) = k then k is the value such that P(X ??? k) = x . qnorm is the inverse function for pnorm. From Fig. 3 we have, qnorm(0.977) = qnorm(pnorm(2)) = 2.
+  - **rnorm** generates random values from a standard normal distribution. The required argument is a number specifying the number of normal variates to produce. Fig. 3 illustrates rnorm(20), the locations of 20 random realizations from the standard normal distribution, jittered slightly to prevent overlap.
 
 ### Creating Tables and Graphs
 
