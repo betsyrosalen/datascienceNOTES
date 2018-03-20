@@ -284,6 +284,14 @@ for (var in seq) {
 }
 ```
 
+### Wrting Custom Functions
+
+```
+my_func <- function(arg1, arg2=DEFAULT){
+  code
+}
+```
+
 ## Built-in Functions
 
 This section taken from <https://www.statmethods.net/management/functions.html> with lots of additions by me.
@@ -303,6 +311,7 @@ R Comand | Description
 `?function_name` | Displays the documentation for the function in the viewer window in RStudio
 `apropos('func')` | to search for a function by only part of the name
 `args(func)` | To get information about the function arguments
+`search()` | To see a list of loaded packages (when you load a package you are adding it to your search list)
 `getwd()` | get the working directory
 `setwd("file\path")` | set the working directory
 `vignette(package="package_name")` | To see a list of 'vignettes' or sample code for a package

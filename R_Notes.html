@@ -144,6 +144,7 @@ $(document).ready(function () {
 <li><a href="#if-else">If Else</a></li>
 <li><a href="#while-loop">While Loop</a></li>
 <li><a href="#for-loop">For Loop</a></li>
+<li><a href="#wrting-custom-functions">Wrting Custom Functions</a></li>
 </ul></li>
 <li><a href="#built-in-functions">Built-in Functions</a><ul>
 <li><a href="#getting-started-and-finding-help">Getting Started and Finding Help</a></li>
@@ -745,6 +746,12 @@ if(condition1=TRUE){
   expr
 }</code></pre>
 </div>
+<div id="wrting-custom-functions" class="section level3">
+<h3>Wrting Custom Functions</h3>
+<pre><code>my_func &lt;- function(arg1, arg2=DEFAULT){
+  code
+}</code></pre>
+</div>
 </div>
 <div id="built-in-functions" class="section level2">
 <h2>Built-in Functions</h2>
@@ -801,26 +808,30 @@ if(condition1=TRUE){
 <td>To get information about the function arguments</td>
 </tr>
 <tr class="even">
+<td><code>search()</code></td>
+<td>To see a list of loaded packages (when you load a package you are adding it to your search list)</td>
+</tr>
+<tr class="odd">
 <td><code>getwd()</code></td>
 <td>get the working directory</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>setwd(&quot;file\path&quot;)</code></td>
 <td>set the working directory</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>vignette(package=&quot;package_name&quot;)</code></td>
 <td>To see a list of ‘vignettes’ or sample code for a package</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>vignette(&quot;vin_name&quot;, package=&quot;pack_name&quot;)</code></td>
 <td>to view a specific vignette</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>data(package=&quot;package_name&quot;)$results</code></td>
 <td>to see the datasets that come with a package</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>data(dataset_name)</code></td>
 <td>to load data - note it does not show up in the “Data” section of your environment in RStudio until you use the data in another function like <code>head(data)</code> or <code>dim(data)</code></td>
 </tr>
@@ -1615,17 +1626,17 @@ hflights %&gt;%
 <p>to display random samples from your data.</p>
 <pre class="r"><code># display exactly 5 random rows
 sample_n(mtcars, 5, replace = FALSE)</code></pre>
-<pre><code>##                      mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Chrysler Imperial   14.7   8  440 230 3.23 5.345 17.42  0  0    3    4
-## Lincoln Continental 10.4   8  460 215 3.00 5.424 17.82  0  0    3    4
-## Maserati Bora       15.0   8  301 335 3.54 3.570 14.60  0  1    5    8
-## Dodge Challenger    15.5   8  318 150 2.76 3.520 16.87  0  0    3    2
-## Cadillac Fleetwood  10.4   8  472 205 2.93 5.250 17.98  0  0    3    4</code></pre>
+<pre><code>##                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Maserati Bora      15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Cadillac Fleetwood 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Fiat X1-9          27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Hornet Sportabout  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Merc 450SL         17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</code></pre>
 <pre class="r"><code># display 5 percent of your data rows selected at random
 sample_frac(mtcars, 0.05, replace = FALSE)</code></pre>
-<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Chrysler Imperial 14.7   8  440 230 3.23 5.345 17.42  0  0    3    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</code></pre>
+<pre><code>##              mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Merc 450SE  16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Honda Civic 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</code></pre>
 </div>
 <div id="rename" class="section level3">
 <h3>rename()</h3>
