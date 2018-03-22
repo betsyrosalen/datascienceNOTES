@@ -878,6 +878,3 @@ hflights2 <- as.data.table(hflights)
 ```
 
 ## ggplot2
-
-
-### Change
