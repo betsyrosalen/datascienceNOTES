@@ -24,10 +24,15 @@ a | z | a or z
 
 which(logical)
 
+
+
 Sys.Date
 Sys.time
 
+
+
 Create and format dates
+
 To create a Date object from a simple character string in R, you can use the as.Date() function. The character string has to obey a format that can be defined using a set of symbols (the examples correspond to 13 January, 1982):
 
 %Y: 4-digit year (1982)
@@ -50,3 +55,19 @@ In addition to creating dates, you can also convert dates to character strings t
 today <- Sys.Date()
 format(Sys.Date(), format = "%d %B, %Y")
 format(Sys.Date(), format = "Today is a %A!")
+
+
+Create and format times
+
+Similar to working with dates, you can use as.POSIXct() to convert from a character string to a POSIXct object, and format() to convert from a POSIXct object to a character string. Again, you have a wide variety of symbols:
+
+%H: hours as a decimal number (00-23)
+%I: hours as a decimal number (01-12)
+%M: minutes as a decimal number
+%S: seconds as a decimal number
+%T: shorthand notation for the typical format %H:%M:%S
+%p: AM/PM indicator
+For a full list of conversion symbols, consult the strptime documentation in the console:
+
+?strptime
+Again,as.POSIXct() uses a default format to match character strings. In this case, it's %Y-%m-%d %H:%M:%S. In this exercise, abstraction is made of different time zones.
