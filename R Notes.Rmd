@@ -292,6 +292,36 @@ my_func <- function(arg1, arg2=DEFAULT){
 }
 ```
 
+### lapply()
+
+Use to iterate without a for loop
+
+```
+# Can take a list or a vector as input
+lapply(iterator, function)
+# Always returns a list.
+
+# If you don't want a list, do this...
+unlist(lapply(iterator, function))
+# Returns a vector
+
+# To use lapply with a function that takes more than one argument
+lapply(iterator, function, arg)
+```
+
+### sapply()
+
+```
+# only use if all items are of the same type.
+# returns a named vector (unlists automatically)
+sapply(vector, function, USE.NAMES=FALSE)
+# USE.NAMES arg to get an unnamed vector
+```
+
+If each item returns a list of same length it returns a matrix
+
+If each item returns a list of different lengths it returns a list of lists
+
 ## Built-in Functions
 
 This section taken from <https://www.statmethods.net/management/functions.html> with lots of additions by me.
@@ -368,8 +398,9 @@ Function | Description
 `toupper(x)` | Uppercase
 `tolower(x)` | Lowercase
 `substr(x, start=n1, stop=n2)` | Extract or replace substrings in a character vector.<br>x <- "abcdef" <br>substr(x, 2, 4) is "bcd" <br>substr(x, 2, 4) <- "22222" is "a222ef"
-`grep(pattern, x , ignore.case=FALSE, fixed=FALSE)` | Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices.<br>grep("A", c("b","A","c"), fixed=TRUE) returns 2
+`grep(pattern, x , ignore.case=FALSE, fixed=FALSE)` | Search for pattern in x. If fixed=FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices.<br>grep("A", c("b","A","c"), fixed=TRUE) returns 2
 `sub(pattern, replacement, x, ignore.case =FALSE, fixed=FALSE)` | Find pattern in x and replace with replacement text. If fixed=FALSE then pattern is a regular expression.<br>If fixed = T then pattern is a text string. <br>sub("\\s",".","Hello There") returns "Hello.There"
+`gsub(pattern, replacement, x)` | Same as sub but replaces all not just first occurance in each item in your list
 `strsplit(x, split)` | Split the elements of character vector x at split. 
 `strsplit("abc", "")` | returns 3 element vector "a","b","c"<br>
 `paste(..., sep="")` | Concatenate strings after using sep string to seperate them.<br>paste("x",1:3,sep="") returns c("x1","x2" "x3")<br>paste("x",1:3,sep="M") returns c("xM1","xM2" "xM3")<br>paste("Today is", date())<br>paste(Year, Month, DayofMonth, sep="-")
