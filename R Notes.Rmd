@@ -89,7 +89,23 @@ selection
 
 ### Factors
 
-To create a factor, first create a vector with all your values, then use the `factor()` function to convert it to a factor.  To set the levels of an ordinal categorical value while you are creating a factor, use `factor(vector, order= TRUE, levels = c("Low", "Medium", "High")`.  To set the levels after the factor is already created, use `levels(factor) <- c("name1", "name2",...)`.  You can also use this to change the names of the levels.  Watch out: the order with which you assign the levels is matters.  Alternatively you can specify the associations like this: `levels(factor) <- c('F' = "Female", 'M' = "Male")`
+To create a factor, first create a vector with all your values, then use the `factor()` function to convert it to a factor.  To set the levels of an ordinal categorical value while you are creating a factor, use
+
+```
+factor(vector, order= TRUE, levels = c("Low", "Medium", "High")
+```
+
+To set the levels after the factor is already created, use 
+
+```
+levels(factor) <- c("name1", "name2",...)
+``` 
+
+You can also use this to change the names of the levels.  Watch out: the order with which you assign the levels is matters.  Alternatively you can specify the associations like this: 
+
+```
+levels(factor) <- c('F' = "Female", 'M' = "Male")
+```
 
 ### Lists
 
@@ -219,6 +235,212 @@ Note - single and double quotes can be used interchangeably like in Python.
 ### Removing Variables
 
 `remove(var)` or `rm(var)`
+
+## Contingency Tables
+
+```{r, eval=FALSE}
+devtools::install_github("seankross/lego")
+```
+```{r}
+library(lego)
+data(legosets)
+
+table(legosets$Availability, useNA='ifany')
+```
+
+```{r}
+table(legosets$Availability, legosets$Packaging, useNA='ifany')
+```
+
+## Proportional Tables {.flexbox .vcenter}
+
+```{r}
+prop.table(table(legosets$Availability))
+```
+
+## Base Graphics
+
+### Bar Plots {.flexbox .vcenter}
+
+Good for Categorical Variables
+
+Regular Plot 
+
+```{r}
+barplot(table(legosets$Availability), las=3)
+```
+
+Proportional Plot
+
+```{r}
+barplot(prop.table(table(legosets$Availability)), las=3)
+```
+
+## Line Graph - Coin Tosses {.flexbox .vcenter}
+
+```{r, fig.width=8, fig.height=3.5}
+# Plot cummulative outcome of 1000 coin tosses
+coins <- sample(c(-1,1), 1000, replace=TRUE)
+plot(1:length(coins), cumsum(coins), type='l')
+abline(h=0)
+```
+
+## Line Graph - Coin Tosses (Full Range)  {.flexbox .vcenter}
+
+```{r, fig.width=8, fig.height=3.5}
+# same exact plot but change the y axis to show the total ramge of possibilities
+plot(1:length(coins), cumsum(coins), type='l', ylim=c(-1000, 1000))
+abline(h=0)
+```
+
+## Coin Tosses Revisited {.flexbox .vcenter}
+
+```{r}
+# Plot cummulative outcome of 100 coin tosses
+coins <- sample(c(-1,1), 100, replace=TRUE)
+plot(1:length(coins), cumsum(coins), type='l')
+abline(h=0)
+# Vaue at the end
+cumsum(coins)[length(coins)]
+```
+
+## Many Random Samples
+
+```{r}
+# Function to do the same as above 1000 times and record the ending value of each 100 coin tosses.
+samples <- rep(NA, 1000)
+for(i in seq_along(samples)) {
+	coins <- sample(c(-1,1), 100, replace=TRUE)
+	samples[i] <- cumsum(coins)[length(coins)]
+}
+head(samples, 30)
+mean(samples)
+```
+
+### Mosaic Plot
+
+For two or three Categorical Variables
+
+```{r, message=FALSE}
+library(vcd)
+mosaic(HairEyeColor, shade=TRUE, legend=TRUE)
+```
+
+### Dot Plot {.flexbox .vcenter}
+
+For quantitative variables
+
+```{r, fig.height=2.5}
+stripchart(legosets$Pieces)
+```
+
+For quantitative variable grouped by a categorical variable
+
+```{r, fig.height=4}
+par.orig <- par(mar=c(1,10,1,1))
+stripchart(legosets$Pieces ~ legosets$Availability, las=1)
+par(par.orig)
+```
+
+### Histograms {.flexbox .vcenter}
+
+```{r}
+hist(legosets$Pieces)
+```
+
+### Transformations {.flexbox .vcenter}
+
+With highly skewed distributions, it is often helpful to transform the data. The log transformation is a common approach, especially when dealing with salary or similar data.
+
+```{r}
+hist(log(legosets$Pieces))
+```
+
+### Evaluating Normal Approximation {.flexbox .vcenter}
+
+Histogram looks normal, but we can overlay a standard normal curve to help evaluation.
+
+```{r, echo=FALSE, results='hide'}
+heights <- c(180.34, 170.18, 175.26, 177.8, 172.72, 160.02, 172.72, 182.88, 177.8, 177.8, 167.64, 180.34, 180.34, 172.72, 165.1, 154.94, 180.34, 172.72, 165.1, 167.64, 182.88, 175.26, 182.88, 177.8, 175.26, 185.42, 175.26, 167.64, 187.96, 175.26, 180.34, 175.26, 198.12, 177.8, 185.42, 175.26, 180.34, 187.96, 182.88, 187.96, 177.8, 182.88, 187.96, 170.18, 182.88, 182.88, 175.26, 170.18, 182.88, 180.34, 180.34, 170.18, 180.34, 187.96, 193.04, 175.26, 193.04, 182.88, 177.8, 167.64, 170.18, 160.02, 172.72, 193.04, 187.96, 190.5, 172.72, 175.26, 193.04, 180.34, 162.56, 187.96, 182.88, 180.34, 177.8, 172.72, 185.42, 180.34, 180.34, 182.88, 185.42, 180.34, 195.58, 185.42, 170.18, 170.18, 172.72, 180.34, 190.5, 172.72, 182.88, 170.18, 177.8, 175.26, 162.56, 162.56, 175.26, 167.64, 170.18, 177.8)/2.54
+```
+
+```{r, fig.width=8, fig.height=4}
+h <- hist(heights, xlim=c(60, 80))
+x <- seq(min(heights)-5, max(heights)+5, 0.01)
+y <- dnorm(x, mean(heights), sd(heights))
+y <- y * diff(h$mids[1:2]) * length(heights)
+lines(x, y, lwd=1.5, col='blue')
+```
+
+### Normal Q-Q Plot {.columns-2}
+
+```{r, fig.width=5, fig.height=5}
+qqnorm(heights, cex=0.5, main='', axes=F, ylab='Male heights (in)', pch=19)
+axis(1)
+axis(2)
+abline(mean(heights), sd(heights), col="blue", lwd=1.5)
+```
+
+### Normal Q-Q Plot with simulations
+
+```{r, fig.width=6, fig.height=5}
+qqnorm(samples)
+DATA606::qqnormsim(samples)
+```
+
+### Density Plots {.flexbox .vcenter}
+
+```{r}
+plot(density(legosets$Pieces, na.rm=TRUE), main='Lego Pieces per Set')
+```
+
+### Density Plot (log tansformed) {.flexbox .vcenter}
+
+```{r}
+plot(density(log(legosets$Pieces), na.rm=TRUE), main='Lego Pieces per Set (log transformed)')
+```
+
+### Box Plots {.columns-2}
+
+For quantitative variables
+
+```{r}
+scores <- c(57, 66, 69, 71, 72, 73, 74, 77, 78, 78, 79, 79, 81, 81, 82, 83, 83, 88, 89, 94)
+
+boxplot(scores, horizontal = TRUE)
+```
+
+```{r, fig.width=3}
+boxplot(legosets$Pieces)
+```
+
+```{r, fig.width=3}
+boxplot(log(legosets$Pieces))
+```
+
+### Scatter Plots {.flexbox .vcenter}
+
+```{r, fig.height=5}
+plot(legosets$Pieces, legosets$USD_MSRP)
+```
+
+### Examining Possible Outliers (expensive sets)
+
+```{r}
+legosets[which(legosets$USD_MSRP >= 400),]
+```
+
+### Examining Possible Outliers (big sets)
+
+```{r}
+legosets[which(legosets$Pieces >= 4000),]
+```
+
+```{r, fig.height=5}
+plot(legosets$Pieces, legosets$USD_MSRP)
+bigAndExpensive <- legosets[which(legosets$Pieces >= 4000 | legosets$USD_MSRP >= 400),]
+text(bigAndExpensive$Pieces, bigAndExpensive$USD_MSRP, labels=bigAndExpensive$Name)
+```
 
 ## Writing functions and conditional statements
 
@@ -414,6 +636,7 @@ Function | Description
 `min(x)` | minimum
 `max(x)` | maximum
 `sum(x)` | sum
+`cumsum(x)` | running total (cummulative sum)
 `diff(x)` | difference
 `range(x)` | range
 `mean(x, trim=0,<br>na.rm=FALSE)` | mean of object x<br># trimmed mean, removing any missing values and <br># 5 percent of highest and lowest scores <br>mx <- mean(x,trim=.05,na.rm=TRUE)
@@ -430,6 +653,14 @@ Function | Description
 `scale(x, center=TRUE, scale=TRUE)` | 	column center or standardize a matrix.
 
 **NOTE:** adding `na.rm=TRUE` will ignore missing values in most functions above
+
+#### The `psych` Package
+
+```{r, message=FALSE, warning=FALSE}
+library(psych)
+describe(legosets$Pieces, skew=FALSE)
+describeBy(legosets$Pieces, group = legosets$Availability, skew=FALSE, mat=TRUE)
+```
 
 ### Statistical Probability Functions
 
@@ -449,6 +680,8 @@ Note that while the examples on this page apply functions to individual variable
 
 
 #### The R probability functions
+
+Really good explanation at [seankross.com/notes/dpqr/](http://seankross.com/notes/dpqr/)
 
 <https://www.unc.edu/courses/2008fall/ecol/563/001/images/lectures/lecture3/lecture3.htm#probfunc>
 
@@ -909,3 +1142,121 @@ hflights2 <- as.data.table(hflights)
 ```
 
 ## ggplot2
+
+```{r}
+library(ggplot2, quietly = TRUE)
+```
+
+
+* `ggplot2` is an R package that provides an alternative framework based upon Wilkinson’s (2005) Grammar of Graphics.
+* `ggplot2` is, in general, more flexible for creating "prettier" and complex plots.
+* Works by creating layers of different types of objects/geometries (i.e. bars, points, lines, polygons, etc.)
+`ggplot2` has at least three ways of creating plots:
+     1. `qplot`
+     2. `ggplot(...) + geom_XXX(...) + ...`
+     3. `ggplot(...) + layer(...)`
+* We will focus only on the second.
+
+#@# First Example {.flexbox .vcenter}
+
+```{r}
+data(diamonds)
+ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point()
+```
+
+### Parts of a `ggplot2` Statement
+
+* Data  
+`ggplot(myDataFrame, aes(x=x, y=y)`
+* Layers  
+`geom_point()`, `geom_histogram()`
+* Facets  
+`facet_wrap(~ cut)`, `facet_grid(~ cut)`
+* Scales  
+`scale_y_log10()`
+* Other options  
+`ggtitle('my title')`, `ylim(c(0, 10000))`, `xlab('x-axis label')`
+
+### Lots of geoms
+
+```{r}
+ls('package:ggplot2')[grep('geom_', ls('package:ggplot2'))]
+```
+
+### Scatterplot Revisited {.flexbox .vcenter}
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Pieces, y=USD_MSRP)) + geom_point()
+```
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Pieces, y=USD_MSRP, color=Availability)) + geom_point()
+```
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Pieces, y=USD_MSRP, size=Minifigures, color=Availability)) + geom_point()
+```
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Pieces, y=USD_MSRP, size=Minifigures)) + geom_point() + facet_wrap(~ Availability)
+```
+
+## Boxplots Revisited {.flexbox .vcenter}
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x='Lego', y=USD_MSRP)) + geom_boxplot()
+```
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Availability, y=USD_MSRP)) + geom_boxplot()
+```
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Availability, y=USD_MSRP)) + geom_boxplot() + coord_flip()
+```
+
+
+## Likert Scales
+
+Likert scales are a type of questionaire where respondents are asked to rate items on scales usually ranging from four to seven levels (e.g. strongly disagree to strongly agree).
+
+```{r, message=FALSE, warning=FALSE}
+library(likert)
+library(reshape)
+data(pisaitems)
+items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
+items24 <- rename(items24, c(
+			ST24Q01="I read only if I have to.",
+			ST24Q02="Reading is one of my favorite hobbies.",
+			ST24Q03="I like talking about books with other people.",
+			ST24Q04="I find it hard to finish books.",
+			ST24Q05="I feel happy if I receive a book as a present.",
+			ST24Q06="For me, reading is a waste of time.",
+			ST24Q07="I enjoy going to a bookstore or a library.",
+			ST24Q08="I read only to get information that I need.",
+			ST24Q09="I cannot sit still and read for more than a few minutes.",
+			ST24Q10="I like to express my opinions about books I have read.",
+			ST24Q11="I like to exchange books with my friends."))
+
+```
+
+### `likert` R Package
+
+```{r}
+l24 <- likert(items24)
+summary(l24)
+```
+
+### `likert` Plots {.flexbox .vcenter}
+
+```{r, fig.width=8}
+plot(l24)
+```
+
+```{r, fig.width=8}
+plot(l24, type='heat')
+```
+
+```{r, fig.width=4, fig.height=7}
+plot(l24, type='density')
+```
