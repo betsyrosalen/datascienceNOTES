@@ -139,7 +139,40 @@ Other indexing syntax...
 my_list[["vec"]]
 my_list$df
 my_list[['df']][2:3,]
+# chain select by names
+my_list[[c("df", "mpg")]]
 ```
+
+If you have a list of lists `a` and want to add a list `b` to it, you can use `c(a, list(b))`
+
+```{r}
+a <- list(1,2,3)
+b <- list(4,5,6)
+
+c <- c(a, list(b))
+c
+```
+
+If you have a list of lists `a` and want to add each element of list `b` to it, you can use `c(a, b)`
+
+```{r}
+d <- c(a, b)
+d
+```
+
+To select an item in a list inside another list use chained selection...
+
+```{r}
+c[[c(4,2)]]
+```
+
+```{r}
+x <- list(a = list(d=1,e=10,f=100), b = list(d=2,e=20,f=200), c = list(d=3,e=30,f=300))
+x[["a"]]
+`[[`(x, "a")
+lapply(x, `[[`, "f")
+```
+
 
 ### Matrices and Data Frames
 
@@ -497,6 +530,29 @@ while (condition) {
   increment
 }
 ```
+
+```{r}
+vec <- c(2, 3, 5, 7, 11, 13)
+
+# Option 1
+for (el in vec) {
+  print(el)
+}
+
+# Option 2
+for (i in 1:length(vec)) {
+  print(vec[i])
+}
+
+# To access and change the elements in the list, you need to use the Option 2 approach above!!!
+vec2 <- as.data.frame(vec)
+for (i in 1:length(vec2)) {
+  vec2$date <- Sys.Date()
+}
+vec2
+
+```
+
 
 ### For Loop
 
