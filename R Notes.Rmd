@@ -9,6 +9,7 @@ output:
 
 ```{r include=FALSE}
 library(tidyverse)
+library(DATA606)
 ```
 
 
@@ -236,7 +237,9 @@ Note - single and double quotes can be used interchangeably like in Python.
 
 `remove(var)` or `rm(var)`
 
-## Contingency Tables
+## Tables
+
+### Contingency Tables
 
 ```{r, eval=FALSE}
 devtools::install_github("seankross/lego")
@@ -252,7 +255,7 @@ table(legosets$Availability, useNA='ifany')
 table(legosets$Availability, legosets$Packaging, useNA='ifany')
 ```
 
-## Proportional Tables {.flexbox .vcenter}
+### Proportional Tables {.flexbox .vcenter}
 
 ```{r}
 prop.table(table(legosets$Availability))
@@ -276,7 +279,7 @@ Proportional Plot
 barplot(prop.table(table(legosets$Availability)), las=3)
 ```
 
-## Line Graph - Coin Tosses {.flexbox .vcenter}
+### Line Graph - Coin Tosses {.flexbox .vcenter}
 
 ```{r, fig.width=8, fig.height=3.5}
 # Plot cummulative outcome of 1000 coin tosses
@@ -285,7 +288,7 @@ plot(1:length(coins), cumsum(coins), type='l')
 abline(h=0)
 ```
 
-## Line Graph - Coin Tosses (Full Range)  {.flexbox .vcenter}
+### Line Graph - Coin Tosses (Full Range)  {.flexbox .vcenter}
 
 ```{r, fig.width=8, fig.height=3.5}
 # same exact plot but change the y axis to show the total ramge of possibilities
@@ -293,7 +296,7 @@ plot(1:length(coins), cumsum(coins), type='l', ylim=c(-1000, 1000))
 abline(h=0)
 ```
 
-## Coin Tosses Revisited {.flexbox .vcenter}
+### Coin Tosses Revisited {.flexbox .vcenter}
 
 ```{r}
 # Plot cummulative outcome of 100 coin tosses
@@ -304,7 +307,7 @@ abline(h=0)
 cumsum(coins)[length(coins)]
 ```
 
-## Many Random Samples
+### Many Random Samples
 
 ```{r}
 # Function to do the same as above 1000 times and record the ending value of each 100 coin tosses.
@@ -386,6 +389,12 @@ abline(mean(heights), sd(heights), col="blue", lwd=1.5)
 ```{r, fig.width=6, fig.height=5}
 qqnorm(samples)
 DATA606::qqnormsim(samples)
+```
+
+### Normal Plot
+
+```{r, fig.width=10, fig.height=5}
+normalPlot(bounds=c(-.5, .5), tails=TRUE)
 ```
 
 ### Density Plots {.flexbox .vcenter}
@@ -571,6 +580,10 @@ R Comand | Description
 `data(package="package_name")$results` | to see the datasets that come with a package
 `data(dataset_name)` | to load data - note it does not show up in the "Data" section of your environment in RStudio until you use the data in another function like `head(data)` or `dim(data)`
 
+##### If you can't install packages reset your default CRAN Mirror
+
+`options(repos = c(CRAN = "http://cran.rstudio.com"))`
+
 **Note:** Putting parenthases around your code is equivalent to the print function
 
 ### Numeric Functions
@@ -669,15 +682,25 @@ The following table describes functions related to probaility distributions. For
 Function | Description
 -------------------- | ----------------------------------------
 `dnorm(x)` | normal density function (by default m=0 sd=1)<br># plot standard normal curve<br>x <- pretty(c(-3,3), 30)<br>y <- dnorm(x)<br>plot(x, y, type='l', xlab="Normal Deviate", ylab="Density", yaxs="i")
-`pnorm(q)` | cumulative normal probability for q <br>(area under the normal curve to the left of q)<br>pnorm(1.96) is 0.975
-`qnorm(p)` | normal quantile. <br>value at the p percentile of normal distribution <br>qnorm(.9) is 1.28 # 90th percentile 
+`pnorm(q)` | cumulative normal probability for q <br>(area under the normal curve to the left of q)<br>`pnorm(1.96)` is 0.975<br>pnorm(z-score) = probability
+`qnorm(p)` | normal quantile. <br>value at the p percentile of normal distribution <br>`qnorm(.9)` is 1.28 # 90th percentile<br>qnorm(probability) = z-score
 `rnorm(n, m=0,sd=1)` | n random normal deviates with mean m and standard deviation sd. <br># 50 random normal variates with mean=50, sd=10<br>x <- rnorm(50, m=50, sd=10)
+`dbinom(1, 4, 0.35)` | The **probability** of getting exactly one success in 4 trials with 0.35 probability of success
+`choose(4,1)` | The **number of ways** to get 1 success in 4 trials - computes the combination $_4C_1$
 `dbinom(x, size, prob)`<br>`pbinom(q, size, prob)`<br>`qbinom(p, size, prob)`<br>`rbinom(n, size, prob)` | binomial distribution where size is the sample size and prob is the probability of a heads (pi) <br># prob of 0 to 5 heads of fair coin out of 10 flips<br>dbinom(0:5, 10, .5)<br># prob of 5 or less heads of fair coin out of 10 flips
 `pbinom(5, 10, .5)`<br>`dpois(x, lamda)`<br>`ppois(q, lamda)`<br>`qpois(p, lamda)<br>rpois(n, lamda)` | poisson distribution with m=std=lamda<br># probability of 0,1, or 2 events with lamda=4<br>dpois(0:2, 4)<br># probability of at least 3 events with lamda=4 <br>1- ppois(2,4)
 `dunif(x, min=0, max=1)`<br>`punif(q, min=0, max=1)`<br>`qunif(p, min=0, max=1)`<br>`runif(n, min=0, max=1)` | uniform distribution, follows the same pattern as the normal distribution above. <br># 10 uniform random variates<br>x <- runif(10)
 
 Note that while the examples on this page apply functions to individual variables, many can be applied to vectors and matrices as well.
 
+#### Combinations vs. Permuations
+
+A combination does not take into account the order, whereas a permutation does. Using the example from mathsisfun.com:
+
+  - A fruit salad is a combination of apples, bananas and grapes, since it's the same fruit salad regardless of the order of fruits
+  - To open a safe you need the right order of numbers, thus the code is a permutation
+  
+[Great explanation of combinations and permutations including how to calculate in R](https://davetang.org/muse/2013/09/09/combinations-and-permutations-in-r/)
 
 #### The R probability functions
 
@@ -752,10 +775,11 @@ source: <http://stackoverflow.com/questions/14441729/read-a-csv-from-github-into
 For uniformly distributed (flat) random numbers, use runif(). By default, its range is from 0 to 1.
 
 ```
+# Generate a random number from 0 to 1
 runif(1)
 #> [1] 0.09006613
 
-# Get a vector of 4 numbers
+# Get a vector of 4 random numbers from 0 to 1
 runif(4)
 #> [1] 0.6972299 0.9505426 0.8297167 0.9779939
 
@@ -1137,7 +1161,7 @@ sample_frac(mtcars, 0.05, replace = FALSE)
 to save data as a data table
 
 ```
-library(data.table)
+# library(data.table) (already loaded above)
 hflights2 <- as.data.table(hflights)
 ```
 
@@ -1201,7 +1225,7 @@ ggplot(legosets, aes(x=Pieces, y=USD_MSRP, size=Minifigures, color=Availability)
 ggplot(legosets, aes(x=Pieces, y=USD_MSRP, size=Minifigures)) + geom_point() + facet_wrap(~ Availability)
 ```
 
-## Boxplots Revisited {.flexbox .vcenter}
+### Boxplots Revisited {.flexbox .vcenter}
 
 ```{r, warning=FALSE}
 ggplot(legosets, aes(x='Lego', y=USD_MSRP)) + geom_boxplot()
@@ -1215,8 +1239,48 @@ ggplot(legosets, aes(x=Availability, y=USD_MSRP)) + geom_boxplot()
 ggplot(legosets, aes(x=Availability, y=USD_MSRP)) + geom_boxplot() + coord_flip()
 ```
 
+### Confidence Intervals
 
-## Likert Scales
+```{r}
+n <- 1e5
+pop <- runif(n, 0, 1)
+samp2 <- sample(pop, size=30)
+mean(samp2)
+(samp2.se <- sd(samp2) / sqrt(length(samp2)))
+```
+
+The confidence interval is then $\mu \pm 2 \times SE$
+
+```{r}
+(samp2.ci <- c(mean(samp2) - 2 * samp2.se, mean(samp2) + 2 * samp2.se))
+```
+
+We are 95% confident that the true population mean is between `r samp2.ci`.
+
+That is, if we were to take 100 random samples, we would expect at least 95% of those samples to have a mean within `r samp2.ci`.
+
+```{r}
+ci <- data.frame(mean=numeric(), min=numeric(), max=numeric())
+for(i in seq_len(100)) {
+	samp <- sample(pop, size=30)
+	se <- sd(samp) / sqrt(length(samp))
+	ci[i,] <- c(mean(samp),
+				mean(samp) - 2 * se, 
+				mean(samp) + 2 * se)
+}
+ci$sample <- 1:nrow(ci)
+ci$sig <- ci$min < 0.5 & ci$max > 0.5
+```
+
+```{r, eval=TRUE, fig.width=10, fig.height=4}
+ggplot(ci, aes(x=min, xend=max, y=sample, yend=sample, color=sig)) + 
+	geom_vline(xintercept=0.5) + 
+	geom_segment() + xlab('CI') + ylab('') +
+	scale_color_manual(values=c('TRUE'='grey', 'FALSE'='red'))
+```
+
+
+# Likert Scales
 
 Likert scales are a type of questionaire where respondents are asked to rate items on scales usually ranging from four to seven levels (e.g. strongly disagree to strongly agree).
 
@@ -1240,14 +1304,14 @@ items24 <- rename(items24, c(
 
 ```
 
-### `likert` R Package
+## `likert` R Package
 
 ```{r}
 l24 <- likert(items24)
 summary(l24)
 ```
 
-### `likert` Plots {.flexbox .vcenter}
+## `likert` Plots {.flexbox .vcenter}
 
 ```{r, fig.width=8}
 plot(l24)
@@ -1260,3 +1324,40 @@ plot(l24, type='heat')
 ```{r, fig.width=4, fig.height=7}
 plot(l24, type='density')
 ```
+
+
+```{r}
+# Inputs
+feature_names <- c("Feature 5", "Feature 4", "Feature 3", "Feature 2", "Feature 1")
+num_features <- length(feature_names)
+y <- array(c(10,4,1,0, 3,4,2,0, 1,2,8,1, 0,0,5,1,  1,2,5,3), dim=c(4,num_features))
+
+# Calculate plot
+num_neg_ratings <- 0
+num_pos_ratings <- 0
+for(i in 1:num_features) {
+  num_neg_ratings = max(num_neg_ratings, sum(y[1:2,i]), sum(y[3:4,i]))
+  num_pos_ratings = max(num_pos_ratings, sum(y[1:2,i]), sum(y[1:2,i]))
+}
+x <- array(0, dim=c(6, num_features))
+for(i in 1:num_features) {
+  x[1,  i] <- num_neg_ratings-sum(y[1:2, i])
+  x[2:5,i] <- y[1:4, i]
+  x[6,  i] <- num_pos_ratings-sum(y[3:4, i])
+}
+
+# do the plot
+png("/tmp/jbl.png", width=600, height=280)
+colors <- c("white","#c91629","#ff5c76","#4e9cff","#0557d6","white")
+par(mar=c(4.1,10.1,4.1,4.1))
+barplot(x, main="Feature Valence", axes=FALSE,
+   col=colors, space=1.1, cex.axis=1.0, las=1, border=NA,
+   names.arg=feature_names, cex=1.0, horiz=TRUE)
+axis(
+  side=1, # X axis
+  at=c(0, num_neg_ratings/2, num_neg_ratings, num_neg_ratings+(num_pos_ratings/2), num_neg_ratings+num_pos_ratings),
+  labels=c("Hate","Dislike",NA,"Like","Love")
+)
+dev.off()
+```
+
