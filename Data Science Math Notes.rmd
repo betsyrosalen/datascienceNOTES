@@ -1,5 +1,7 @@
 ---
 title: "Data Science Math NOTES"
+author: "Betsy Rosalen"
+date: "September 24, 2018"
 output: html_document
 ---
 
@@ -11,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Functions
 
-**Function**: A rule for a relationship between an input, or independent, quantity and an output, or dependent, quantity in which **each input value uniquely determines one output value**. We say “the output is a function of the input.”
+**Function**: A rule for a relationship between an input, or independent, quantity and an output, or dependent, quantity in which **each input value uniquely determines one output value**. We say "the output is a function of the input."
 
 **Vertical Line Test**
 The vertical line test is a handy way to think about whether a graph defines the vertical output as a function of the horizontal input. Imagine drawing vertical lines through the graph. If any vertical line would cross the graph more than once, then the graph does not define only one vertical output for each horizontal input.
@@ -25,9 +27,6 @@ Inequality | Interval notation
 5 < h <= 10 | (5, 10]
 5 <= h < 10 | [5, 10)
 5 < h < 10 | (5, 10)
-h < 10 | (-∞,10)
-h >= 10 | [10, ∞)
-all real numbers | (∞, ∞)
 
 ### Toolkit Functions
 
@@ -59,10 +58,10 @@ Cube Root: $f(x) = \sqrt[3]{x}$
 ![Graphs of basic functions that you should know on sight.](https://math.libretexts.org/@api/deki/files/925/CNX_Precalc_Figure_01_03_012.jpg?revision=1)
 
 ## Composition of Functions
-When the output of one function is used as the input of another, we call the entire operation a composition of functions. We write $f(g(x))$, and read this as “f of g of x” or “f composed with g at x”.
+When the output of one function is used as the input of another, we call the entire operation a composition of functions. We write $f(g(x))$, and read this as "f of g of x" or "f composed with g at x".
 An alternate notation for composition uses the composition operator: $\circ$ 
 
-$(f \circ g)(x)$ is read “f of g of x” or “f composed with g at x”, just like $f(g(x))$.
+$(f \circ g)(x)$ is read "f of g of x" or "f composed with g at x", just like $f(g(x))$.
 
 ## Transformations of Functions
 
@@ -103,7 +102,7 @@ When combining vertical transformations written in the form $af(x) + k$,
 first vertically stretch by $a$, then vertically shift by $k$.
 
 ## Linear Functions
-A linear function is a function whose graph produces a line. Linear functions can always be written in the form $f(x) = b+mx$ or $f(x) = mx+b$; they’re equivalent where $b$ is the initial or starting value of the function (when input, $x = 0$), and $m$ is the constant rate of change of the function This form of a line is called **slope-intercept form** of a line.
+A linear function is a function whose graph produces a line. Linear functions can always be written in the form $f(x) = b+mx$ or $f(x) = mx+b$; they're equivalent where $b$ is the initial or starting value of the function (when input, $x = 0$), and $m$ is the constant rate of change of the function This form of a line is called **slope-intercept form** of a line.
 
 #### Slope and Increasing/Decreasing
 **m is the constant rate of change** of the function (also called **slope**). The slope determines if the function is an increasing function or a decreasing function.
@@ -114,7 +113,6 @@ If $m = 0$ , the rate of change zero, and the function $f(x) = b + 0x = b$ is ju
 $m$ = change in $y$ over the change in $x$ = $\frac{y_2 - y_1}{x_2 - x_1}$
 
 #### Point-Slope Equation of a Line
-An equation for the line passing through the point $(x_1, y_1)$ with slope $m$ can be written as $y − y_1 = m(x − x_1)$
 This is called the **point-slope form** of a line.
 
 Point-slope is a specific form of linear equations in two variables:
@@ -142,10 +140,8 @@ All variables here represent real numbers and all variables in denominators are 
 
 Rule | Formula | Notes
 ----- | ----- | -----
-Product Rule | $x^a⋅x^b = x^{a+b}$ | 
 Quotient Rule | $\frac{x^a}{x^b} = x^{a-b}$ | 
 Power of a Power | $(x^a)^b = x^{ab}$ | 
-Power of a Product | $(xy)^a = x^a⋅y^a$ | 
 Power of a Quotient | $(\frac{x}{y})^b = \frac{x^b}{y^b}$ | 
 Zero Exponent | $x^0 = 1$ | provided $x \neq 0$ 
 Negative Exponents | $x^{-n} = \frac{1}{x^n}$ | provided $x \neq 0$    
@@ -157,7 +153,6 @@ Quadratics are transformations of the $f(x) = x2$ function. Quadratics commonly 
 ### Forms of Quadratic Functions
 The **standard form** of a quadratic function is $f(x) = ax^2 + bx + c$ 
 
-The **transformation form** of a quadratic function is $f(x) = a(x−h)^2 + k$
  
 The **vertex** *(the lowest point or turnaround point of the graphed curve)* of the quadratic function is located at $(h, k)$, where $h$ and $k$ are the numbers in the transformation form of the function. Because the vertex appears in the transformation form, it is often called the **vertex form**.
 
@@ -169,7 +164,6 @@ We can find the **horizontal intercepts** by solving for when the output will be
 #### Quadratic Formula
 For a quadratic function given in standard form $f(x) = ax^2 + bx + c$, the ***quadratic formula gives the horizontal intercepts*** of the graph of this function.
 
-$x = \frac{−b ± \sqrt{b^2 − 4ac}}{2a}$
 
 ## Polynomials and Rational Functions 
 
@@ -187,7 +181,7 @@ The **leading term** is the term containing the highest power of the variable: t
 
 The **leading coefficient** is the coefficient of the leading term.
 
-Because of the definition of the “leading” term we often rearrange polynomials so that the powers are descending. $f(x)=a_nx^n + .....+ a_2x^2 + a_1x + a_0$
+Because of the definition of the "leading" term we often rearrange polynomials so that the powers are descending. $f(x)=a_nx^n + .....+ a_2x^2 + a_1x + a_0$
 
 #### Intercepts
 
@@ -201,13 +195,11 @@ Rational functions are the ratios, or fractions, of polynomials. A rational func
 $$f(x) = \frac{P(x)}{Q(x)} = \frac{a_0+a_1x+a_2x^2+...+a_px^p}{a_0+a_1x+a_2x^2+...+a_qx^q}$$
 
 #### Vertical and Horizontal Asymptotes
-A **vertical asymptote** of a graph is a vertical line $x = a$ where the graph tends towards positive or negative infinity as the inputs approach $a$. As $x → a$ , $f(x) → ± ∞$
 
 ##### Vertical Asymptotes of Rational Functions
 The vertical asymptotes of a rational function will occur where the denominator of the function is equal to zero and the numerator is not zero.
 
 ##### Horizontal Asymptote of Rational Functions
-A **horizontal asymptote** of a graph is a horizontal line y = b where the graph approaches the line as the inputs get large. As $x → ± ∞$ , $f(x) → b$
 
 The horizontal asymptote of a rational function can be determined by looking at the degrees of the numerator and denominator.
 
@@ -229,11 +221,8 @@ Where:
 - $r$ is the **percent growth** or **decay rate**, written as a decimal
 - $b$ is the **growth factor** or **growth multiplier**. Since powers of negative numbers behave strangely, we limit b to positive values.
 
-### Euler’s Number: *e* ≈ 2.718282
-$e ≈ 2.718282$
 Useful for things continuous growth, such as continuous compounding (interest), or natural phenomena like radioactive decay that happen continuously.
 
-$e =$ the limit as $n -> ∞$ of $(1 + \frac{1}{n})^n$**
 
 ### Continuous Growth Formula
 Continuous Growth can be calculated using the formula $f(x) = ae^{rx}$
@@ -254,14 +243,11 @@ Graphically, in the function $f(x) = ab^x$
 The graph will have a horizontal asymptote at $y = 0$  
 The graph will be concave up if a > 0; concave down if $a < 0$.  
 The domain of the function is all real numbers  
-The range of the function is $(0,∞)$
 
 When sketching the graph of an exponential function, it can be helpful to remember that **the graph will pass through the points ** $(0, a)$ ** and ** $(1, ab)$.
 
-The value b will determine the function’s long run behavior: 
+The value b will determine the function's long run behavior: 
 
-- If $b > 1$, as $x → ∞$, $f(x) → ∞$ and as $x → −∞$, $f(x) → 0$
-- If $0 < b < 1$ (negative rate), as $x→∞$, $f(x) → 0$ and as $x → −∞$, $f(x) → ∞$
 
 ## Logarithmic Functions
 Logarithms are the inverse of exponential functions -- they allow us to undo exponential functions and solve for the exponent. They are also commonly used to express quantities that vary widely in size.
@@ -296,8 +282,6 @@ Graphically, in the function $g(x)=\log_(x)$
 The graph has a horizontal intercept at $(1, 0)$
 The graph has a vertical asymptote at $x = 0$
 The graph is increasing and concave down
-The domain of the function is $x > 0$, or $(0,∞)$
-The range of the function is all real numbers, or $(∞−,∞)$
 
 When sketching a general logarithm with base b, it can be helpful to remember that the graph will pass through the points $(1, 0)$ and $(b, 1)$.
 
@@ -306,6 +290,18 @@ When sketching a general logarithm with base b, it can be helpful to remember th
 - Take the logarithm of both sides
 - Utilize the exponent property for logarithms to pull the variable out of the exponent
 - Use algebra to solve for the variable.
+
+# Statistics and Probability
+
+## Discrete Probability Distributions
+
+### Simulation of Discrete Probabilities
+
+#### Frequency concept of probability
+
+ISf we have a probability $p$ that an experiment will result in outcome $A$, then if we repeat this experiment a large number of times we should expect that the fraction of times that $A$ will occur is about $p$.
+
+
 
 # Calculus
 
@@ -327,13 +323,11 @@ If the graph at that point $(n, y)$ is not near a single number we say, $\lim_{x
 
 Just because $f(x)$ at $x = c$ is not defined it does not mean that $\lim_{x\to{c}}$ does not exist.  You can still find the limit using algebra or a graph (page 76 in textbook)
 
-The values of a function near a point may depend on the direction we use to approach that point.  In this case there are Left and Right Limits denoted with x → c- and x → c+
 
 ### Continuity
-A function that is “friendly” and doesn’t have any breaks or jumps in it is called continuous. More formally:
+A function that is "friendly" and doesn't have any breaks or jumps in it is called continuous. More formally:
 
 #### Definition of Continuity at a Point
-A function f is continuous at x = a if and only if lim x→a f(x) = f(a).
 
 The behavior at **x = 3** exhibits a **hole** in the graph, sometimes called a **removable discontinuity**, since the graph could be made continuous by changing the value of a single point. The behavior at **x = -2** is called a **jump discontinuity**, since the graph jumps between two values.
 ![Discontinuity](http://tutorial.math.lamar.edu/Classes/CalcI/Continuity_files/image001.gif)
@@ -342,4 +336,3 @@ The behavior at **x = 3** exhibits a **hole** in the graph, sometimes called a *
 
 Polynomial, radical, rational, exponential, and logarithmic functions are all continuous where they are defined. Moreover, any combination of continuous functions is also continuous.
 
-This is helpful, because the definition of continuity says that for a continuous function, lim x→a f(x) = f(a). That means for a continuous function, we can find the limit by direct substitution (evaluating the function) if the function is continuous at a.
