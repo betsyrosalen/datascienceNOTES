@@ -1,8 +1,16 @@
 ---
 title: "Data Science Math NOTES"
 author: "Betsy Rosalen"
-date: "September 24, 2018"
-output: html_document
+date: "October 11, 2018"
+output:
+  html_document:
+    code_folding: show
+    css: ./reports.css
+    theme: cerulean
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
 ---
 
 ```{r setup, include=FALSE}
@@ -27,6 +35,9 @@ Inequality | Interval notation
 5 < h <= 10 | (5, 10]
 5 <= h < 10 | [5, 10)
 5 < h < 10 | (5, 10)
+h < 10 | ($-\infty$,10)
+h >= 10 | [10, $\infty$)
+all real numbers | ($-\infty$, $\infty$)
 
 ### Toolkit Functions
 
@@ -113,6 +124,7 @@ If $m = 0$ , the rate of change zero, and the function $f(x) = b + 0x = b$ is ju
 $m$ = change in $y$ over the change in $x$ = $\frac{y_2 - y_1}{x_2 - x_1}$
 
 #### Point-Slope Equation of a Line
+An equation for the line passing through the point $(x_1, y_1)$ with slope $m$ can be written as $y - y_1 = m(x - x_1)$
 This is called the **point-slope form** of a line.
 
 Point-slope is a specific form of linear equations in two variables:
@@ -140,8 +152,10 @@ All variables here represent real numbers and all variables in denominators are 
 
 Rule | Formula | Notes
 ----- | ----- | -----
+Product Rule | $x^a \cdot x^b = x^{a+b}$ | 
 Quotient Rule | $\frac{x^a}{x^b} = x^{a-b}$ | 
 Power of a Power | $(x^a)^b = x^{ab}$ | 
+Power of a Product | $(xy)^a = x^a y^a$ | 
 Power of a Quotient | $(\frac{x}{y})^b = \frac{x^b}{y^b}$ | 
 Zero Exponent | $x^0 = 1$ | provided $x \neq 0$ 
 Negative Exponents | $x^{-n} = \frac{1}{x^n}$ | provided $x \neq 0$    
@@ -153,6 +167,7 @@ Quadratics are transformations of the $f(x) = x2$ function. Quadratics commonly 
 ### Forms of Quadratic Functions
 The **standard form** of a quadratic function is $f(x) = ax^2 + bx + c$ 
 
+The **transformation form** of a quadratic function is $f(x) = a(x - h)^2 + k$
  
 The **vertex** *(the lowest point or turnaround point of the graphed curve)* of the quadratic function is located at $(h, k)$, where $h$ and $k$ are the numbers in the transformation form of the function. Because the vertex appears in the transformation form, it is often called the **vertex form**.
 
@@ -164,6 +179,7 @@ We can find the **horizontal intercepts** by solving for when the output will be
 #### Quadratic Formula
 For a quadratic function given in standard form $f(x) = ax^2 + bx + c$, the ***quadratic formula gives the horizontal intercepts*** of the graph of this function.
 
+$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
 
 ## Polynomials and Rational Functions 
 
@@ -195,11 +211,13 @@ Rational functions are the ratios, or fractions, of polynomials. A rational func
 $$f(x) = \frac{P(x)}{Q(x)} = \frac{a_0+a_1x+a_2x^2+...+a_px^p}{a_0+a_1x+a_2x^2+...+a_qx^q}$$
 
 #### Vertical and Horizontal Asymptotes
+A **vertical asymptote** of a graph is a vertical line $x = a$ where the graph tends towards positive or negative infinity as the inputs approach $a$. As $x ??? a$ , $f(x) ??? \pm ???$
 
 ##### Vertical Asymptotes of Rational Functions
 The vertical asymptotes of a rational function will occur where the denominator of the function is equal to zero and the numerator is not zero.
 
 ##### Horizontal Asymptote of Rational Functions
+A **horizontal asymptote** of a graph is a horizontal line y = b where the graph approaches the line as the inputs get large. As $x \rightarrow \pm \infty$ , $f(x) \rightarrow b$
 
 The horizontal asymptote of a rational function can be determined by looking at the degrees of the numerator and denominator.
 
@@ -221,8 +239,11 @@ Where:
 - $r$ is the **percent growth** or **decay rate**, written as a decimal
 - $b$ is the **growth factor** or **growth multiplier**. Since powers of negative numbers behave strangely, we limit b to positive values.
 
+### Euler's Number: *e* \approx 2.718282
+$e \approx 2.718282$
 Useful for things continuous growth, such as continuous compounding (interest), or natural phenomena like radioactive decay that happen continuously.
 
+$e =$ the limit as $n -> \infty$ of $(1 + \frac{1}{n})^n$**
 
 ### Continuous Growth Formula
 Continuous Growth can be calculated using the formula $f(x) = ae^{rx}$
@@ -241,13 +262,16 @@ Graphically, in the function $f(x) = ab^x$
     ***(negative rate)***
 
 The graph will have a horizontal asymptote at $y = 0$  
-The graph will be concave up if a > 0; concave down if $a < 0$.  
+The graph will be concave up if $a > 0$; concave down if $a < 0$.  
 The domain of the function is all real numbers  
+The range of the function is $(0,\infty)$
 
 When sketching the graph of an exponential function, it can be helpful to remember that **the graph will pass through the points ** $(0, a)$ ** and ** $(1, ab)$.
 
 The value b will determine the function's long run behavior: 
 
+- If $b > 1$, as $x \rightarrow \infty$, $f(x) \rightarrow \infty$ and as $x \rightarrow -\infty$, $f(x) \rightarrow 0$
+- If $0 < b < 1$ (negative rate), as $x \rightarrow \infty$, $f(x) \rightarrow 0$ and as $x \rightarrow -\infty$, $f(x) \rightarrow \infty$
 
 ## Logarithmic Functions
 Logarithms are the inverse of exponential functions -- they allow us to undo exponential functions and solve for the exponent. They are also commonly used to express quantities that vary widely in size.
@@ -282,6 +306,8 @@ Graphically, in the function $g(x)=\log_(x)$
 The graph has a horizontal intercept at $(1, 0)$
 The graph has a vertical asymptote at $x = 0$
 The graph is increasing and concave down
+The domain of the function is $x > 0$, or $(0,\infty)$
+The range of the function is all real numbers, or $(-\infty,\infty)$
 
 When sketching a general logarithm with base b, it can be helpful to remember that the graph will pass through the points $(1, 0)$ and $(b, 1)$.
 
@@ -299,7 +325,7 @@ When sketching a general logarithm with base b, it can be helpful to remember th
 
 #### Frequency concept of probability
 
-ISf we have a probability $p$ that an experiment will result in outcome $A$, then if we repeat this experiment a large number of times we should expect that the fraction of times that $A$ will occur is about $p$.
+If we have a probability $p$ that an experiment will result in outcome $A$, then if we repeat this experiment a large number of times we should expect that the fraction of times that $A$ will occur is about $p$.
 
 
 
@@ -323,16 +349,21 @@ If the graph at that point $(n, y)$ is not near a single number we say, $\lim_{x
 
 Just because $f(x)$ at $x = c$ is not defined it does not mean that $\lim_{x\to{c}}$ does not exist.  You can still find the limit using algebra or a graph (page 76 in textbook)
 
+#### One Sided Limits
+
+The values of a function near a point may depend on the direction we use to approach that point.  In this case there are Left and Right Limits denoted with $\lim_{x \rightarrow c^-}$ and $\lim_{x \rightarrow c^+}$
 
 ### Continuity
 A function that is "friendly" and doesn't have any breaks or jumps in it is called continuous. More formally:
 
 #### Definition of Continuity at a Point
+A function f is continuous at $x = a$ if and only if $\lim_{x \rightarrow a} f(x) = f(a)$.
 
-The behavior at **x = 3** exhibits a **hole** in the graph, sometimes called a **removable discontinuity**, since the graph could be made continuous by changing the value of a single point. The behavior at **x = -2** is called a **jump discontinuity**, since the graph jumps between two values.
-![Discontinuity](http://tutorial.math.lamar.edu/Classes/CalcI/Continuity_files/image001.gif)
+The behavior at **$x = 3$** exhibits a **hole** in the graph, sometimes called a **removable discontinuity**, since the graph could be made continuous by changing the value of a single point. The behavior at **$x = -2$** is called a **jump discontinuity**, since the graph jumps between two values.
+![Discontinuity](http://tutorial.math.lamar.edu/Classes/CalcI/Continuity_Files/image001.png)
 
 ### Finding the Limit
 
 Polynomial, radical, rational, exponential, and logarithmic functions are all continuous where they are defined. Moreover, any combination of continuous functions is also continuous.
 
+This is helpful, because the definition of continuity says that for a continuous function, $\lim_{x \rightarrow a} f(x) = f(a)$. That means for a continuous function, we can find the limit by direct substitution (evaluating the function) if the function is continuous at a.
