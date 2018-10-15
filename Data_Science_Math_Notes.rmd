@@ -66,7 +66,7 @@ Cube Root: $f(x) = \sqrt[3]{x}$
 
 ![Graphs of basic functions that you should know on sight.](https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/Graphs_of_Toolkit_Functions.PNG "Toolkit Functions")
 
-![Graphs of basic functions that you should know on sight.]((https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/Graphs_of_Toolkit_Functions2.jpg "Toolkit Functions")
+![Graphs of basic functions that you should know on sight.](https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/Graphs_of_Toolkit_Functions2.jpg "Toolkit Functions")
 
 <https://math.libretexts.org/@api/deki/files/925/CNX_Precalc_Figure_01_03_012.jpg?revision=1>
 
@@ -362,7 +362,9 @@ A function that is "friendly" and doesn't have any breaks or jumps in it is call
 A function f is continuous at $x = a$ if and only if $\lim_{x \rightarrow a} f(x) = f(a)$.
 
 The behavior at **$x = 3$** exhibits a **hole** in the graph, sometimes called a **removable discontinuity**, since the graph could be made continuous by changing the value of a single point. The behavior at **$x = -2$** is called a **jump discontinuity**, since the graph jumps between two values.
-![Discontinuity](http://tutorial.math.lamar.edu/Classes/CalcI/Continuity_Files/image001.png)
+![Discontinuity](https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/continuity_discontinuity.png)
+
+From: <http://tutorial.math.lamar.edu/>
 
 ### Finding the Limit
 
