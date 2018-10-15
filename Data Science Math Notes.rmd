@@ -64,9 +64,11 @@ Square Root: $f(x) = \sqrt[2]{x} = \sqrt{x}$
 Cube Root: $f(x) = \sqrt[3]{x}$
 
 
-![Graphs of basic functions that you should know on sight.](https://github.com/betsyrosalen/datascienceNOTES/blob/master/Images/Graphs%20of%20the%20Toolkit%20Functions.PNG "Toolkit Functions")
+![Graphs of basic functions that you should know on sight.](https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/Graphs%20of%20the%20Toolkit%20Functions.PNG "Toolkit Functions")
 
-![Graphs of basic functions that you should know on sight.](https://math.libretexts.org/@api/deki/files/925/CNX_Precalc_Figure_01_03_012.jpg?revision=1)
+![Graphs of basic functions that you should know on sight.]((https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/Graphs%20of%20the%20Toolkit%20Functions%202.jpg "Toolkit Functions"))
+
+(https://math.libretexts.org/@api/deki/files/925/CNX_Precalc_Figure_01_03_012.jpg?revision=1)
 
 ## Composition of Functions
 When the output of one function is used as the input of another, we call the entire operation a composition of functions. We write $f(g(x))$, and read this as "f of g of x" or "f composed with g at x".
