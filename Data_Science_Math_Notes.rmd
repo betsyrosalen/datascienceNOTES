@@ -319,6 +319,8 @@ When sketching a general logarithm with base b, it can be helpful to remember th
 - Utilize the exponent property for logarithms to pull the variable out of the exponent
 - Use algebra to solve for the variable.
 
+
+
 # Statistics and Probability
 
 ## Discrete Probability Distributions
@@ -328,6 +330,115 @@ When sketching a general logarithm with base b, it can be helpful to remember th
 #### Frequency concept of probability
 
 If we have a probability $p$ that an experiment will result in outcome $A$, then if we repeat this experiment a large number of times we should expect that the fraction of times that $A$ will occur is about $p$.
+
+## Important distributions
+
+### Binomial Distribution
+
+#### What is the probability that a machine will fail after 8 years given a manufacturer's expected lifetime of 10 years. (This means that we expect one failure every ten years.) 
+
+$$
+P(T > 8) = {8 \choose 0} \times 0.1^0 \times (1-0.1)^{8-0}= 1 \times 1 \times 0.9^8 = 0.4304672\\
+$$
+
+###### Expected value, variance, and standard deviation for an eight year period...
+
+$$
+\mu = E[X] = np = 8 \times 0.1 = 0.8\\
+\sigma^2 = V[X] = np(1-p) = 8 \times 0.1 \times 0.9 = 0.72\\
+\sigma = \sqrt{0.72} = 0.8485281
+$$
+
+```{r}
+choose(8,0)*0.1^0*(1-0.1)^8
+pbinom(0, 8, 0.1)
+```
+
+### Poisson Distribution
+
+#### What is the probability that a machine will fail after 8 years given a manufacturer's expected lifetime of 10 years. (This means that we expect one failure every ten years.) 
+
+$$
+P(T > 8) = \frac{e^{-\lambda} \lambda^k}{k!} = \frac{e^{-(.1 \times 8)} (.1 \times 8)^0}{0!} = 0.449329
+$$
+
+###### Expected value, variance, and standard deviation for an eight year period.
+
+$$
+\mu = E[X] = \lambda = 0.1*8 = 0.8\\
+\sigma^2 = V[X] = \lambda = 0.1*8 = 0.8\\
+\sigma = \sqrt{\lambda} = \sqrt{0.1*8} = \sqrt{0.8} = 0.8944272
+$$
+
+###### Expected value, variance, and standard deviation for a one year period.
+
+$$
+\mu = E[X] = \lambda = 0.1 = 0.1\\
+\sigma^2 = V[X] = \lambda = 0.1 = 0.1\\
+\sigma = \sqrt{\lambda} = \sqrt{0.1} = 0.3162278
+$$
+
+```{r}
+# lambda = the probability in an 8 year period, 0.1 per year times 8 years
+(exp(1)^(-(0.1*8))*(0.1*8)^0)/factorial(0)
+ppois(0, 0.1*8)
+```
+
+### Exponential Distribution
+
+#### What is the probability that a machine will fail after 8 years given a manufacturer's expected lifetime of 10 years. (This means that we expect one failure every ten years.) 
+
+$$
+P(T > 8) = 1-(1 - e^{- \lambda x}) = e^{- 0.1 \times 8}\\
+$$
+
+###### Expected value, variance, and standard deviation.
+
+$$
+\mu = E[X] = \frac{1}{\lambda} = \frac{1}{0.1} = 10\\
+\sigma^2 = V[X] = \frac{1}{\lambda^2} = \frac{1}{0.1^2} = 100\\
+\sigma = \sqrt{100} = 10
+$$
+
+```{r}
+exp(- 0.1*8)
+pexp(8,0.1, lower.tail = FALSE)
+```
+
+### Geometric Distribution
+
+#### What is the probability that a machine will fail after 8 years given a manufacturer's expected lifetime of 10 years. (This means that we expect one failure every ten years.) 
+
+$$
+P(T > 8) = (1-0.1)^8 = 0.9^8 = 0.4304672\\
+$$
+
+###### Expected value, variance, and standard deviation.
+
+$$
+\mu = E[X] = \frac{1}{p} = \frac{1}{0.1} = 10\\
+\sigma^2 = V[X] = \frac{1-p}{p^2} = \frac{1-0.1}{0.1^2} = 90\\
+\sigma = \sqrt{90} = 9.486833
+$$
+
+```{r}
+(1-0.1)^8
+pgeom(0, 0.9^8)
+```
+
+### Hypergeometric Distribution
+
+### 
+
+### 
+
+### 
+
+### 
+
+### 
+
+### 
 
 
 
@@ -362,7 +473,7 @@ A function that is "friendly" and doesn't have any breaks or jumps in it is call
 A function f is continuous at $x = a$ if and only if $\lim_{x \rightarrow a} f(x) = f(a)$.
 
 The behavior at **$x = 3$** exhibits a **hole** in the graph, sometimes called a **removable discontinuity**, since the graph could be made continuous by changing the value of a single point. The behavior at **$x = -2$** is called a **jump discontinuity**, since the graph jumps between two values.
-![Discontinuity](https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/continuity_discontinuity.png)
+![Discontinuity](https://github.com/betsyrosalen/datascienceNOTES/raw/master/Images/continuity_discontinuity.png) 
 
 From: <http://tutorial.math.lamar.edu/>
 
