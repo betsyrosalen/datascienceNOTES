@@ -2,9 +2,12 @@
 title: "R Notes"
 author: "Betsy Rosalen"
 output:
-  html_document:
-    theme: cerulean
-    toc: yes
+    html_document:
+        theme: cerulean
+        # code_folding: show
+        df_print: paged
+        toc: true
+        css: ./reports.css
 ---
 
 ```{r include=FALSE}
@@ -13,11 +16,11 @@ library(DATA606)
 ```
 
 
-## Data Types in R (vs. Python)
+# Data Types in R (vs. Python)
 
-### Primitives
+## Primitives
 
-#### All R primitives are technically vectors
+### All R primitives are technically vectors
 
 R | Python | Notes
 ----- | ----- | -----
@@ -37,7 +40,7 @@ Function | Description
 
 Can coerce data from lower end without loss of precision to uppper end but not the other way around.
 
-### Non-Primitives
+## Non-Primitives
 
 R | Python | Notes
 ------------- | -------------------------- | --------------------------
@@ -50,15 +53,15 @@ R | Python | Notes
 
 There is no `is.date` function.
 
-#### Note about factors
+### Note about factors
 
 The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a limited number of categories. A continuous variable, on the other hand, can correspond to an infinite number of values.
 
 It is important that R knows whether it is dealing with a continuous or a categorical variable, as the statistical models you will develop in the future treat both types differently.
 
-## Entering Data in R
+# Entering Data in R
 
-### Vectors
+## Vectors
 
 R Comand | Description
 ----------------------- | --------------------------------
@@ -67,7 +70,7 @@ R Comand | Description
 `seq(from , to, by)` | generate a sequence<br>indices <- seq(1, 10, 2) <br># indices is c(1, 3, 5, 7, 9)
 `rep(x, ntimes)` | repeat x n times<br>y <- rep(1:3, 2) <br># y is c(1, 2, 3, 1, 2, 3)
 
-#### Other Useful Functions for creating and working with Vectors
+### Other Useful Functions for creating and working with Vectors
 
 Function | Description
 ------------------ | ----------------------------------------
@@ -79,7 +82,7 @@ Function | Description
 `length(vector)` | returns the length of the vector
 `cut(x, n)` | divide continuous variable in factor with n levels y <- cut(x, 5)
 
-#### Creating a selection vector
+### Creating a selection vector
 
 ```{r}
 vector <- c(1, 2, -4, 5, -6)
@@ -88,7 +91,7 @@ selection <- vector[selection_vector]
 selection
 ```
 
-### Factors
+## Factors
 
 To create a factor, first create a vector with all your values, then use the `factor()` function to convert it to a factor.  To set the levels of an ordinal categorical value while you are creating a factor, use
 
@@ -108,7 +111,7 @@ You can also use this to change the names of the levels.  Watch out: the order w
 levels(factor) <- c('F' = "Female", 'M' = "Male")
 ```
 
-### Lists
+## Lists
 
 Lists can contain anything!  (Just like Python)
 
@@ -174,7 +177,7 @@ lapply(x, `[[`, "f")
 ```
 
 
-### Matrices and Data Frames
+## Matrices and Data Frames
 
 ```{r}
 # Dataframes can store vectors of different types
@@ -221,13 +224,13 @@ Function | Description
 `df$totals <- df$var1 + df$var2` | Creates a new column and puts the total of var1 and var2 in that column
 `df[which.max(df$var),]` | Finds the row with max in specified variable column
 
-#### Note about multiplying matrices
+### Note about multiplying matrices
 
 You can multiply each element in a matrix by te corresponding element in another matirx using regular operations i.e. `matrix1 * matrix2`
 
 This is not the standard matrix multiplication for which you should use `%*%` in R.
 
-### data.table
+## data.table
 
 ```{r}
 library(data.table, quietly = TRUE)
@@ -252,9 +255,9 @@ Function | Description
 `DT[ , B]` | only column B
 `DT[ , list(B, D)]` | only column B and D
 
-## Variables
+# Variables
 
-### Assignment
+## Assignment
 
 `x <- 5` or `5 -> x`
 
@@ -266,13 +269,13 @@ Variable names can use any conbination of alphanumeric characters, periods and u
 
 Note - single and double quotes can be used interchangeably like in Python.
 
-### Removing Variables
+## Removing Variables
 
 `remove(var)` or `rm(var)`
 
-## Tables
+# Tables
 
-### Contingency Tables
+## Contingency Tables
 
 ```{r, eval=FALSE}
 devtools::install_github("seankross/lego")
@@ -288,15 +291,15 @@ table(legosets$Availability, useNA='ifany')
 table(legosets$Availability, legosets$Packaging, useNA='ifany')
 ```
 
-### Proportional Tables {.flexbox .vcenter}
+## Proportional Tables {.flexbox .vcenter}
 
 ```{r}
 prop.table(table(legosets$Availability))
 ```
 
-## Base Graphics
+# Base Graphics
 
-### Bar Plots {.flexbox .vcenter}
+## Bar Plots {.flexbox .vcenter}
 
 Good for Categorical Variables
 
@@ -312,7 +315,7 @@ Proportional Plot
 barplot(prop.table(table(legosets$Availability)), las=3)
 ```
 
-### Line Graph - Coin Tosses {.flexbox .vcenter}
+## Line Graph - Coin Tosses {.flexbox .vcenter}
 
 ```{r, fig.width=8, fig.height=3.5}
 # Plot cummulative outcome of 1000 coin tosses
@@ -321,7 +324,7 @@ plot(1:length(coins), cumsum(coins), type='l')
 abline(h=0)
 ```
 
-### Line Graph - Coin Tosses (Full Range)  {.flexbox .vcenter}
+## Line Graph - Coin Tosses (Full Range)  {.flexbox .vcenter}
 
 ```{r, fig.width=8, fig.height=3.5}
 # same exact plot but change the y axis to show the total ramge of possibilities
@@ -329,7 +332,7 @@ plot(1:length(coins), cumsum(coins), type='l', ylim=c(-1000, 1000))
 abline(h=0)
 ```
 
-### Coin Tosses Revisited {.flexbox .vcenter}
+## Coin Tosses Revisited {.flexbox .vcenter}
 
 ```{r}
 # Plot cummulative outcome of 100 coin tosses
@@ -340,7 +343,7 @@ abline(h=0)
 cumsum(coins)[length(coins)]
 ```
 
-### Many Random Samples
+## Many Random Samples
 
 ```{r}
 # Function to do the same as above 1000 times and record the ending value of each 100 coin tosses.
@@ -353,7 +356,7 @@ head(samples, 30)
 mean(samples)
 ```
 
-### Mosaic Plot
+## Mosaic Plot
 
 For two or three Categorical Variables
 
@@ -362,7 +365,7 @@ library(vcd)
 mosaic(HairEyeColor, shade=TRUE, legend=TRUE)
 ```
 
-### Dot Plot {.flexbox .vcenter}
+## Dot Plot {.flexbox .vcenter}
 
 For quantitative variables
 
@@ -378,13 +381,13 @@ stripchart(legosets$Pieces ~ legosets$Availability, las=1)
 par(par.orig)
 ```
 
-### Histograms {.flexbox .vcenter}
+## Histograms {.flexbox .vcenter}
 
 ```{r}
 hist(legosets$Pieces)
 ```
 
-### Transformations {.flexbox .vcenter}
+## Transformations
 
 With highly skewed distributions, it is often helpful to transform the data. The log transformation is a common approach, especially when dealing with salary or similar data.
 
@@ -392,7 +395,7 @@ With highly skewed distributions, it is often helpful to transform the data. The
 hist(log(legosets$Pieces))
 ```
 
-### Evaluating Normal Approximation {.flexbox .vcenter}
+## Evaluating Normal Approximation
 
 Histogram looks normal, but we can overlay a standard normal curve to help evaluation.
 
@@ -408,7 +411,7 @@ y <- y * diff(h$mids[1:2]) * length(heights)
 lines(x, y, lwd=1.5, col='blue')
 ```
 
-### Normal Q-Q Plot {.columns-2}
+## Normal Q-Q Plot
 
 ```{r, fig.width=5, fig.height=5}
 qqnorm(heights, cex=0.5, main='', axes=F, ylab='Male heights (in)', pch=19)
@@ -417,32 +420,32 @@ axis(2)
 abline(mean(heights), sd(heights), col="blue", lwd=1.5)
 ```
 
-### Normal Q-Q Plot with simulations
+## Normal Q-Q Plot with simulations
 
 ```{r, fig.width=6, fig.height=5}
 qqnorm(samples)
 DATA606::qqnormsim(samples)
 ```
 
-### Normal Plot
+## Normal Plot
 
 ```{r, fig.width=10, fig.height=5}
 normalPlot(bounds=c(-.5, .5), tails=TRUE)
 ```
 
-### Density Plots {.flexbox .vcenter}
+## Density Plots
 
 ```{r}
 plot(density(legosets$Pieces, na.rm=TRUE), main='Lego Pieces per Set')
 ```
 
-### Density Plot (log tansformed) {.flexbox .vcenter}
+## Density Plot (log tansformed)
 
 ```{r}
 plot(density(log(legosets$Pieces), na.rm=TRUE), main='Lego Pieces per Set (log transformed)')
 ```
 
-### Box Plots {.columns-2}
+## Box Plots
 
 For quantitative variables
 
@@ -460,19 +463,19 @@ boxplot(legosets$Pieces)
 boxplot(log(legosets$Pieces))
 ```
 
-### Scatter Plots {.flexbox .vcenter}
+## Scatter Plots
 
 ```{r, fig.height=5}
 plot(legosets$Pieces, legosets$USD_MSRP)
 ```
 
-### Examining Possible Outliers (expensive sets)
+## Examining Possible Outliers (expensive sets)
 
 ```{r}
 legosets[which(legosets$USD_MSRP >= 400),]
 ```
 
-### Examining Possible Outliers (big sets)
+## Examining Possible Outliers (big sets)
 
 ```{r}
 legosets[which(legosets$Pieces >= 4000),]
@@ -484,9 +487,9 @@ bigAndExpensive <- legosets[which(legosets$Pieces >= 4000 | legosets$USD_MSRP >=
 text(bigAndExpensive$Pieces, bigAndExpensive$USD_MSRP, labels=bigAndExpensive$Name)
 ```
 
-## Writing functions and conditional statements
+# Writing functions and conditional statements
 
-### If Else
+## If Else
 
 ```
 # If statement alone
@@ -511,7 +514,7 @@ if(condition1=TRUE){
 }
 ```
 
-### While Loop
+## While Loop
 
 ```
 while (condition) {
@@ -554,7 +557,7 @@ vec2
 ```
 
 
-### For Loop
+## For Loop
 
 ```
 for (var in seq) {
@@ -571,7 +574,7 @@ for (var in seq) {
 }
 ```
 
-### Wrting Custom Functions
+## Wrting Custom Functions
 
 ```
 my_func <- function(arg1, arg2=DEFAULT){
@@ -579,7 +582,7 @@ my_func <- function(arg1, arg2=DEFAULT){
 }
 ```
 
-### lapply()
+## lapply()
 
 Use to iterate without a for loop
 
@@ -596,7 +599,7 @@ unlist(lapply(iterator, function))
 lapply(iterator, function, arg)
 ```
 
-### sapply()
+## sapply()
 
 ```
 # only use if all items are of the same type.
@@ -609,11 +612,11 @@ If each item returns a list of same length it returns a matrix
 
 If each item returns a list of different lengths it returns a list of lists
 
-## Built-in Functions
+# Built-in Functions
 
 This section taken from <https://www.statmethods.net/management/functions.html> with lots of additions by me.
 
-### Getting Started and Finding Help
+## Getting Started and Finding Help
 
 **Tip:** If you use the up and down arrow keys, you can scroll through your previous commands, your so-called command history. You can also access it by clicking on the history tab in the upper right panel. This will save you a lot of typing in the future.
 
@@ -636,13 +639,13 @@ R Comand | Description
 `data(package="package_name")$results` | to see the datasets that come with a package
 `data(dataset_name)` | to load data - note it does not show up in the "Data" section of your environment in RStudio until you use the data in another function like `head(data)` or `dim(data)`
 
-##### If you can't install packages reset your default CRAN Mirror
+#### If you can't install packages reset your default CRAN Mirror
 
 `options(repos = c(CRAN = "http://cran.rstudio.com"))`
 
 **Note:** Putting parenthases around your code is equivalent to the print function
 
-### Numeric Functions
+## Numeric Functions
 
 Function | Description
 --------------- | ----------------------------------------
@@ -662,7 +665,7 @@ Function | Description
 `log10(x)` | common logarithm
 `exp(x)` | e^x
 
-### Logical Operators
+## Logical Operators
 
 Operator | Description
 ---------- | ---------------------------------------------
@@ -681,7 +684,7 @@ Operator | Description
 `all(v1 < v2)` | checks if all items in a vector are less than the corresponding items in a second vector
 `identical(x, y)` | checks if the two items are identical
 
-### Character Functions
+## Character Functions
 
 Function | Description
 --------------- | ----------------------------------------
@@ -696,7 +699,7 @@ Function | Description
 `strsplit("abc", "")` | returns 3 element vector "a","b","c"<br>
 `paste(..., sep="")` | Concatenate strings after using sep string to seperate them.<br>paste("x",1:3,sep="") returns c("x1","x2" "x3")<br>paste("x",1:3,sep="M") returns c("xM1","xM2" "xM3")<br>paste("Today is", date())<br>paste(Year, Month, DayofMonth, sep="-")
 
-### Basic Statistical Functions
+## Basic Statistical Functions
 
 Basic statistical functions are provided in the following table. Each has the option na.rm to strip missing values before calculations. Otherwise the presence of missing values will lead to a missing result. Object can be a numeric vector or data frame.
 
@@ -723,7 +726,7 @@ Function | Description
 
 **NOTE:** adding `na.rm=TRUE` will ignore missing values in most functions above
 
-#### The `psych` Package
+### The `psych` Package
 
 ```{r, message=FALSE, warning=FALSE}
 library(psych)
@@ -731,7 +734,7 @@ describe(legosets$Pieces, skew=FALSE)
 describeBy(legosets$Pieces, group = legosets$Availability, skew=FALSE, mat=TRUE)
 ```
 
-### Statistical Probability Functions
+## Statistical Probability Functions
 
 The following table describes functions related to probaility distributions. For random number generators below, you can use set.seed(1234) or some other integer to create reproducible pseudo-random numbers.
 
@@ -749,7 +752,7 @@ Function | Description
 
 Note that while the examples on this page apply functions to individual variables, many can be applied to vectors and matrices as well.
 
-#### Combinations vs. Permuations
+### Combinations vs. Permuations
 
 A combination does not take into account the order, whereas a permutation does. Using the example from mathsisfun.com:
 
@@ -758,7 +761,7 @@ A combination does not take into account the order, whereas a permutation does. 
   
 [Great explanation of combinations and permutations including how to calculate in R](https://davetang.org/muse/2013/09/09/combinations-and-permutations-in-r/)
 
-#### The R probability functions
+### The R probability functions
 
 Really good explanation at [seankross.com/notes/dpqr/](http://seankross.com/notes/dpqr/)
 
@@ -780,7 +783,7 @@ To better understand what these functions do we'll focus on the four probability
   - **qnorm** is the quantile function of the standard normal distribution. If qnorm(x) = k then k is the value such that P(X ??? k) = x . qnorm is the inverse function for pnorm. From Fig. 3 we have, qnorm(0.977) = qnorm(pnorm(2)) = 2.
   - **rnorm** generates random values from a standard normal distribution. The required argument is a number specifying the number of normal variates to produce. Fig. 3 illustrates rnorm(20), the locations of 20 random realizations from the standard normal distribution, jittered slightly to prevent overlap.
 
-### Creating Tables and Graphs
+## Creating Tables and Graphs
 
 Function | Description
 -------------------- | ----------------------------------------
@@ -792,9 +795,9 @@ Function | Description
 `plot(df$var1, df$var2, type = "l")` | Creates a linegraph of the two variables
 `hist(x)` | Creates a histogram of the single variable x
 
-## Reading data into R
+# Reading data into R
 
-### From CSV
+## From CSV
 
 `read.csv("file/location", header = F)`
 
@@ -802,7 +805,7 @@ Must use double backslash or forward slashes.
 
 `header = F` means the original file has no header
 
-### From SPSS
+## From SPSS
 
 Use Foreign Package
 
@@ -812,7 +815,7 @@ library(foreign)
 df <- read.spss("file/location", to.data.frame=T, use.value.labels=T)
 ```
 
-### From GitHub
+## From GitHub
 
 Here is some sample code for reading R from a dataset that has been posted in a GitHub repository:
 
@@ -826,7 +829,7 @@ source: <http://stackoverflow.com/questions/14441729/read-a-csv-from-github-into
 
 **Make sure you copy the RAW data URL location.**
 
-## Generating Random Numbers
+# Generating Random Numbers
 
 For uniformly distributed (flat) random numbers, use runif(). By default, its range is from 0 to 1.
 
@@ -884,7 +887,7 @@ runif(3)
 #> [1] 0.1089715 0.5973455 0.9726307
 ```
 
-## Random Samples
+# Random Samples
 
 Use the sample( ) function to take a random sample of size n from a dataset.
 
@@ -895,7 +898,7 @@ mysample <- mydata[sample(1:nrow(mydata), 50,
   	replace=FALSE),]
 ```
 
-## Measuring elapsed time
+# Measuring elapsed time
 
 The system.time() function will measure how long it takes to run a particular block of code in R.
 
@@ -911,11 +914,11 @@ system.time({
 
 The output means it took 0.153 seconds to run the block of code.
 
-## Subsetting Data
+# Subsetting Data
 
 R has powerful indexing features for accessing object elements. These features can be used to select and exclude variables and observations. The following code snippets demonstrate ways to keep or delete variables and observations and to take random samples from a dataset.
 
-### Selecting (Keeping) Variables 
+## Selecting (Keeping) Variables 
 
 ```
 # select variables v1, v2, v3
@@ -932,7 +935,7 @@ newdata <- mydata[c(1,5:10)]
 
 To practice this interactively, try the [selection of data frame elements exercises](https://campus.datacamp.com/courses/free-introduction-to-r/chapter-5-data-frames?ex=6) in the Data frames chapter of this [introduction to R course](https://www.datacamp.com/courses/free-introduction-to-r).
 
-### Excluding (DROPPING) Variables
+## Excluding (DROPPING) Variables
 
 ```
 # exclude variables v1, v2, v3
@@ -946,7 +949,7 @@ newdata <- mydata[c(-3,-5)]
 mydata$v3 <- mydata$v5 <- NULL
 ```
 
-### Selecting Observations in a data.frame
+## Selecting Observations in a data.frame
 
 ```
 # first 5 observations
@@ -975,7 +978,8 @@ detach(mydata)
 baseball$OBP <- with(baseball, (h + bb + hbp) / (ab + bb + hbp + sf))
 ```
 
-### Selection using the Subset Function
+## Selection using the Subset Function
+
 The subset( ) function is the easiest way to select variables and observations. In the following example, we select all rows that have a value of age greater than or equal to 20 or age less then 10. We keep the ID and Weight columns.
 
 ```
@@ -994,7 +998,7 @@ select=weight:income)
 
 **Note:** Column names do not need quotes, but values do.
 
-### Aggragting Data
+# Aggragting Data
 
 ```
 aggregate(var ~ group_by-var, data, function)
@@ -1007,7 +1011,7 @@ aggregate(cbind(price, carat) ~ cut, diamonds, mean, na.rm=TRUE)
 
 Keep in mind that *plyr*, *dplyr*, and *data.table* are faster.
 
-### Ordering Data
+# Ordering Data
 
 ```
 # returns a vecor of index postions
@@ -1018,13 +1022,13 @@ order(data$var, decreasing=TRUE)
 
 ## tidyr
 
-### gather()
+## gather()
 
-### spread()
+## spread()
 
-### separate()
+## separate()
 
-### unite()
+## unite()
 
 ## dplyr
 
@@ -1052,7 +1056,7 @@ lut <- c("A" = "carrier", "B" = "weather", "C" = "FFA", "D" = "security", "E" = 
 hflights$Code <- lut[hflights$CancellationCode]
 ```
 
-### select()
+## select()
 
 Returns a subset of the columns. Variable names do not need quotes.
 
@@ -1060,7 +1064,7 @@ Returns a subset of the columns. Variable names do not need quotes.
 select(df, col1, col2, col3, ...)
 ```
 
-#### Helper functions for variable selection
+### Helper functions for variable selection
 dplyr comes with a set of helper functions that can help you select groups of variables inside a `select()` call:
 
 Function | Description
@@ -1074,7 +1078,7 @@ Function | Description
 
 Pay attention here: When you refer to columns directly inside select(), you don't use quotes. If you use the helper functions, you do use quotes.
 
-### filter() 
+## filter() 
 
 Returns a subset of the rows.
 
@@ -1099,7 +1103,7 @@ filter(df, !is.na(x))
 
 ***Don't forget to use the double equal sign!***
 
-### mutate()
+## mutate()
 
 Adds new variables(columns) that are functions of existing variables.
 
@@ -1112,7 +1116,7 @@ mutate(df, x = y - z)
 mutate(df, x = y - z, a = b + c)
 ```
 
-### arrange() 
+## arrange() 
 
 Reorders the rows according to single or multiple variables.
 
@@ -1126,7 +1130,7 @@ arrange(df, var1, desc(var2), x + y)
 
 ```
 
-### summarise() 
+## summarise() 
 
 Condenses multiple values to a single value. Reduces each group to a single row by calculating aggregate measures.
 
@@ -1134,7 +1138,7 @@ Condenses multiple values to a single value. Reduces each group to a single row 
 summarise(df, min = min(x), avg = mean(y))
 ```
 
-#### dplyr aggregate functions
+### dplyr aggregate functions
 
 dplyr provides several helpful aggregate functions of its own, in addition to the ones that are already defined in R. These include:
 
@@ -1155,7 +1159,7 @@ mpg2
 summarise(mtcars, tot = n(), num = sum(mpg2), avg = mean(mpg2))
 ```
 
-### Pipes
+## Pipes
 
 Pipes require the *magrittr* or *dplyr* package.
 
@@ -1170,7 +1174,7 @@ hflights %>%
   summarise(avg = mean(diff))
 ```
 
-### group_by() 
+## group_by() 
 
 Most useful when using `summarise()` after grouping.
 
@@ -1180,7 +1184,7 @@ mtcars %>%
   summarise(avg_mpg = mean(mpg))
 ```
 
-### Putting it all together!
+## Putting it all together!
 
 ```
 hflights %>%
@@ -1197,7 +1201,7 @@ hflights %>%
   filter(rank == 1)
 ```
 
-### sample_n() and sample_frac() 
+## sample_n() and sample_frac() 
 
 to display random samples from your data.
 
@@ -1208,11 +1212,11 @@ sample_n(mtcars, 5, replace = FALSE)
 sample_frac(mtcars, 0.05, replace = FALSE)
 ```
 
-### rename()
+## rename()
 
-### transmute()
+## transmute()
 
-### Connecting dplyr to a data table or database
+## Connecting dplyr to a data table or database
 
 to save data as a data table
 
@@ -1237,14 +1241,14 @@ library(ggplot2, quietly = TRUE)
      3. `ggplot(...) + layer(...)`
 * We will focus only on the second.
 
-#@# First Example {.flexbox .vcenter}
+## First Example {.flexbox .vcenter}
 
 ```{r}
 data(diamonds)
 ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point()
 ```
 
-### Parts of a `ggplot2` Statement
+## Parts of a `ggplot2` Statement
 
 * Data  
 `ggplot(myDataFrame, aes(x=x, y=y)`
@@ -1257,13 +1261,13 @@ ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point()
 * Other options  
 `ggtitle('my title')`, `ylim(c(0, 10000))`, `xlab('x-axis label')`
 
-### Lots of geoms
+## Lots of geoms
 
 ```{r}
 ls('package:ggplot2')[grep('geom_', ls('package:ggplot2'))]
 ```
 
-### Scatterplot Revisited {.flexbox .vcenter}
+## Scatterplot Revisited {.flexbox .vcenter}
 
 ```{r, warning=FALSE}
 ggplot(legosets, aes(x=Pieces, y=USD_MSRP)) + geom_point()
@@ -1281,7 +1285,7 @@ ggplot(legosets, aes(x=Pieces, y=USD_MSRP, size=Minifigures, color=Availability)
 ggplot(legosets, aes(x=Pieces, y=USD_MSRP, size=Minifigures)) + geom_point() + facet_wrap(~ Availability)
 ```
 
-### Boxplots Revisited {.flexbox .vcenter}
+## Boxplots Revisited {.flexbox .vcenter}
 
 ```{r, warning=FALSE}
 ggplot(legosets, aes(x='Lego', y=USD_MSRP)) + geom_boxplot()
@@ -1295,7 +1299,7 @@ ggplot(legosets, aes(x=Availability, y=USD_MSRP)) + geom_boxplot()
 ggplot(legosets, aes(x=Availability, y=USD_MSRP)) + geom_boxplot() + coord_flip()
 ```
 
-### Confidence Intervals
+## Confidence Intervals
 
 ```{r}
 n <- 1e5
