@@ -440,9 +440,6 @@ Product Rule | $(uv)'$ | $u'v + uv'$ |
 Quotient Rule | $(\frac{u}{v})'$ | $\frac{u'v - uv'}{v^2}$ | 
 Reciprocal Rule | $\frac{1}{f}$ | $\frac{−f'}{f^2}$ | 
 Reciprocal Rule | $\frac{1}{x}$ | $\frac{-1}{x^2}$ | 
-Sine | $\sin x$ | $\cos x$ | This is in Radians!
-Cosine | $\cos x$ | $-\sin x$ | This is in Radians!
-Tangent | $\tan x$ | $\sec^2 x$ | This is in Radians!
 Chain Rule <br>(as "Composition of Functions") | $f \circ g$ | $(f' \circ g) × g'$ | 
 Chain Rule (using ' ) | $f(g(x))$ | $f'(g(x)) \centerdot g'(x)$ | 
 Chain Rule (using  $\frac{d}{dx}$ ) | $\frac{dy}{dx}$ | $\frac{dy}{du} \frac{du}{dx}$ | 
@@ -451,15 +448,45 @@ Chain Rule (using  $\frac{d}{dx}$ ) | $\frac{dy}{dx}$ | $\frac{dy}{du} \frac{du}
 
 The derivative of a composition is the derivative of the outside, with the inside staying the same, TIMES the derivative of what’s inside.
 
+### Chain Rule Patterns
+
+Problem | Solution
+--------------------------- | -------------------------
+$\frac{d}{dx}(u^n)$ | $n \cdot u^{n-1} \cdot u'$
+$\frac{d}{dx}(e^u)$ | $u' \cdot e^u$
+$\frac{d}{dx}(\sin u)$ | $u' \cdot \cos u$
+$\frac{d}{dx}(\cos u)$ | $-u' \cdot \sin u$
+$\frac{d}{dx}(\tan u)$ | $u' \cdot \sec^2 u$
+$\frac{d}{dx}(ln(anything))$ | $\frac{1}{anything} \cdot anything' = \frac{anything'}{anything}$
+$\frac{d}{dx}(a^x)$ <br> for $a > 0$, $a\neq 1$ | $\ln(a) \cdot a^x$
+
+### Derivatives of Trigonometric Functions
+
+Rule | Function | Derivative | Note
+--------------------------------- | ------------ | ------------ | ---------------------
+Sine | $\sin x$ | $\cos x$ | This is in Radians!
+Cosine | $\cos x$ | $-\sin x$ | This is in Radians!
+Tangent | $\tan x$ | $\sec^2 x$ | This is in Radians!
+Cotangent | $\cot x$ | $-\csc^2 x$ | This is in Radians!
+Secant | $\sec x$ | $\sec x \tan x$ | This is in Radians!
+Cosecant | $\csc x$ | $-\csc x \cot x$ | This is in Radians!
+
+Note: derivatives of the trigonometric functions that start with "c" start with a negative sign.
+
 ### What if the Derivative Doesn’t Exist?
 
-A function is called *differentiable* at a point if its derivative exists at that point.
+A function is called **differentiable** at a point if its derivative exists at that point.
 
 We’ve been acting as if derivatives exist everywhere for every function. This is true for most of the functions that you will run into, but there are some common places where the derivative doesn’t exist.
 
 - If the tangent line is vertical, the derivative will not exist.
 - If there is a sharp corner (cusp) in the graph, the derivative will not exist at that point because there is no well-defined tangent line (a teetering tangent, if you will). 
 - If there is a jump in the graph, the tangent line will be different on either side and the derivative can’t exist.
+
+## Integration
+
+### 
+
 
 # Statistics and Probability
 

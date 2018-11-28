@@ -824,36 +824,18 @@ The range of the function is <span class="math inline">\((0,\infty)\)</span></p>
 <td></td>
 </tr>
 <tr class="even">
-<td>Sine</td>
-<td><span class="math inline">\(\sin x\)</span></td>
-<td><span class="math inline">\(\cos x\)</span></td>
-<td>This is in Radians!</td>
-</tr>
-<tr class="odd">
-<td>Cosine</td>
-<td><span class="math inline">\(\cos x\)</span></td>
-<td><span class="math inline">\(-\sin x\)</span></td>
-<td>This is in Radians!</td>
-</tr>
-<tr class="even">
-<td>Tangent</td>
-<td><span class="math inline">\(\tan x\)</span></td>
-<td><span class="math inline">\(\sec^2 x\)</span></td>
-<td>This is in Radians!</td>
-</tr>
-<tr class="odd">
 <td>Chain Rule <br>(as “Composition of Functions”)</td>
 <td><span class="math inline">\(f \circ g\)</span></td>
 <td><span class="math inline">\((f' \circ g) × g'\)</span></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Chain Rule (using ’ )</td>
 <td><span class="math inline">\(f(g(x))\)</span></td>
 <td><span class="math inline">\(f'(g(x)) \centerdot g'(x)\)</span></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Chain Rule (using <span class="math inline">\(\frac{d}{dx}\)</span> )</td>
 <td><span class="math inline">\(\frac{dy}{dx}\)</span></td>
 <td><span class="math inline">\(\frac{dy}{du} \frac{du}{dx}\)</span></td>
@@ -866,9 +848,106 @@ The range of the function is <span class="math inline">\((0,\infty)\)</span></p>
 <h3><span class="header-section-number">2.1.7</span> Chain Rule (in words)</h3>
 <p>The derivative of a composition is the derivative of the outside, with the inside staying the same, TIMES the derivative of what’s inside.</p>
 </div>
+<div id="chain-rule-patterns" class="section level3">
+<h3><span class="header-section-number">2.1.8</span> Chain Rule Patterns</h3>
+<table style="width:75%;">
+<colgroup>
+<col width="38%"></col>
+<col width="36%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\frac{d}{dx}(u^n)\)</span></td>
+<td><span class="math inline">\(n \cdot u^{n-1} \cdot u'\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{d}{dx}(e^u)\)</span></td>
+<td><span class="math inline">\(u' \cdot e^u\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\frac{d}{dx}(\sin u)\)</span></td>
+<td><span class="math inline">\(u' \cdot \cos u\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{d}{dx}(\cos u)\)</span></td>
+<td><span class="math inline">\(-u' \cdot \sin u\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\frac{d}{dx}(\tan u)\)</span></td>
+<td><span class="math inline">\(u' \cdot \sec^2 u\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{d}{dx}(ln(anything))\)</span></td>
+<td><span class="math inline">\(\frac{1}{anything} \cdot anything' = \frac{anything'}{anything}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\frac{d}{dx}(a^x)\)</span> <br> for <span class="math inline">\(a &gt; 0\)</span>, <span class="math inline">\(a\neq 1\)</span></td>
+<td><span class="math inline">\(\ln(a) \cdot a^x\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="derivatives-of-trigonometric-functions" class="section level3">
+<h3><span class="header-section-number">2.1.9</span> Derivatives of Trigonometric Functions</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>Function</th>
+<th>Derivative</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sine</td>
+<td><span class="math inline">\(\sin x\)</span></td>
+<td><span class="math inline">\(\cos x\)</span></td>
+<td>This is in Radians!</td>
+</tr>
+<tr class="even">
+<td>Cosine</td>
+<td><span class="math inline">\(\cos x\)</span></td>
+<td><span class="math inline">\(-\sin x\)</span></td>
+<td>This is in Radians!</td>
+</tr>
+<tr class="odd">
+<td>Tangent</td>
+<td><span class="math inline">\(\tan x\)</span></td>
+<td><span class="math inline">\(\sec^2 x\)</span></td>
+<td>This is in Radians!</td>
+</tr>
+<tr class="even">
+<td>Cotangent</td>
+<td><span class="math inline">\(\cot x\)</span></td>
+<td><span class="math inline">\(-\csc^2 x\)</span></td>
+<td>This is in Radians!</td>
+</tr>
+<tr class="odd">
+<td>Secant</td>
+<td><span class="math inline">\(\sec x\)</span></td>
+<td><span class="math inline">\(\sec x \tan x\)</span></td>
+<td>This is in Radians!</td>
+</tr>
+<tr class="even">
+<td>Cosecant</td>
+<td><span class="math inline">\(\csc x\)</span></td>
+<td><span class="math inline">\(-\csc x \cot x\)</span></td>
+<td>This is in Radians!</td>
+</tr>
+</tbody>
+</table>
+<p>Note: derivatives of the trigonometric functions that start with “c” start with a negative sign.</p>
+</div>
 <div id="what-if-the-derivative-doesnt-exist" class="section level3">
-<h3><span class="header-section-number">2.1.8</span> What if the Derivative Doesn’t Exist?</h3>
-<p>A function is called <em>differentiable</em> at a point if its derivative exists at that point.</p>
+<h3><span class="header-section-number">2.1.10</span> What if the Derivative Doesn’t Exist?</h3>
+<p>A function is called <strong>differentiable</strong> at a point if its derivative exists at that point.</p>
 <p>We’ve been acting as if derivatives exist everywhere for every function. This is true for most of the functions that you will run into, but there are some common places where the derivative doesn’t exist.</p>
 <ul>
 <li>If the tangent line is vertical, the derivative will not exist.</li>
