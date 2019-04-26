@@ -1,0 +1,120 @@
+---
+title: "CUNY SPS DATA 621 - Notes"
+author: "Betsy Rosalen"
+date: "February 9, 2019"
+output:
+    html_document:
+        theme: cerulean
+        code_folding: show
+        df_print: paged
+        toc: true
+        toc_float:
+            collapsed: false
+            smooth_scroll: false
+        css: ./reports.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+options(scipen=999, digits = 5)
+```
+
+# Types of Linear Regression 
+
+Regression Type | Response | Explanatory Variables
+----- | ----- | -----
+**Linear regression** | continuous | can be continuous / discrete / categorical
+**Multiple regression** | quantitative (e.g. diabetes) | quantitative (diastolic and bmi)
+**ANCOVA** | quantitative (e.g. bmi) | quantitative (diastolic) and qualitative (test)
+**ANOVA** | quantitative (e.g. diastolic) | qualitative (test)
+**Logistic** | qualitative (e.g. test) | quantitative (diastolic and bmi)
+
+# Types of Statistical Tests
+
+https://towardsdatascience.com/statistical-tests-when-to-use-which-704557554740
+
+## Z-test
+A z-test is used when population parameters such as "population mean" and "population standard deviation" are KNOWN.  
+Used to determine if the sample drawn belongs to the same population or is representative of the population.
+
+### Conditions:
+1. the data were collected in a random way
+2. each observation must be independent of the others
+3. the sampling distribution must be normal or approximately normal or large sample (n $\leq$ 30)
+4. the sample must be less than 10% of the population
+5. the population standard deviation must be known
+
+## T-test
+A t-test is used when the population parameters (mean and standard deviation) are NOT known and is based on sample mean and sample standard deviation as estimates of the population parameters.
+A t-test is used to compare the mean of two given samples.
+
+### Types of t-test
+1. Independent samples t-test compares mean for two groups to see if they are the same or different (with statistical significance)
+2. Paired sample t-test which compares means from the same group at different times to see if there is a statistically significant change
+3. One sample t-test which tests the mean of a single group against a known mean (possibly a population mean?).
+
+### Conditions:
+1. the data were collected in a random way
+2. each observation must be independent of the others
+3. the sampling distribution must be normal or approximately normal or large sample (n $\leq$ 30) 
+	(in practice, using the t-distribution is sufficiently robust provided that there is little skewness and no outliers in the data for each sample)
+4. the sample must be less than 10% of the population
+
+## ANOVA
+Uses a single hypothesis test to check whether the means across many samples/groups are equal.
+
+### Types of ANOVA
+1. One-way ANOVA: It is used to compare the difference between the three or more samples/groups of a single independent variable.
+2. MANOVA: allows us to test the effect of one or more independent variables on two or more dependent variables. In addition, MANOVA can also detect the difference in co-relation between dependent variables given the groups of independent variables.  (Not sure I really understand this one)
+
+### Conditions:
+1. the observations are independent within and across groups, 
+2. the data within each group are nearly normal, and
+3. the variability across the groups is about equal.
+
+## Chi-Square Test
+Chi-square test is used to compare categorical variables.
+
+### Types of chi-square test
+1. Goodness of fit test, which determines if a sample matches or is representative of the population (same proportions in each category).
+2. A chi-square fit test for two independent variables is used to compare two variables in a contingency table to check if the data matches or is representative of the population (same proportions in each combination of categories).
+
+### Conditions:
+1. the sampling method is simple random sampling
+2. the variables under study are each categorical
+3. the expected frequency count for each cell of the contingency table is at least 5
+
+# Gauss Markov Theorem
+
+The Gauss Markov theorem tells us that if a certain set of assumptions are met, the ordinary least squares estimate for regression coefficients gives you the best linear unbiased estimate (BLUE) possible.
+
+## Gauss Markov Assumptions
+
+There are five Gauss Markov assumptions (also called conditions):
+
+- **Linearity**: the parameters we are estimating using the OLS method must be themselves linear.
+- **Random**: our data must have been randomly sampled from the population.
+- **Non-Collinearity**: the regressors being calculated aren't perfectly correlated with each other.
+- **Exogeneity**: the regressors aren't correlated with the error term.
+- **Homoscedasticity**: no matter what the values of our regressors might be, the error of the variance is constant.
+
+
+# Checking Regression Assumptions
+
+**To check if a linear regression model's assumption of linearity is incorrect**, the best option is plotting and eyeballing it - specifically, a plot of observed values versus predicted values, or a plot of residuals versus predicted values. In the Observed vs Predicted plot, the points should be along a diagonal line; in the Residuals vs Predicted plot, the points should be along a horizontal line. If you can, the latter is the better method to use because it has a more constant variance. If the pattern of the plotted points results in a noticeable curve, you can be sure the plot isn't looking at very large or very small valued predictions.
+
+**To check if a linear regression model's assumption of independence is incorrect**, you again want to look at a residual time series plot (which is the residuals and the row number if there's no actual date-time information) and a table of residual autocorrelations (I believe R has an acf function). If a noticeable amount of the autocorrelations fall outside of the 95% confidence bands around 0, that hints to that the assumption is incorrect. The confidence bands are +- 2/sqrt(sampleSize).
+
+**To check if a linear regression model's assumption of homoscedasticity is incorrect**, you'll want to look at a plot of the residuals versus the predicted values -- if there's time series data, add on residuals versus time. If residuals are growing larger as either time or predicted values increases, this might be a violation of the homoscedasticity of the linear model.
+
+**To check if a linear regression model's assumption of normality is incorrect**, it's another plot as you've surely guessed. This time it's a normal probability plot of the residuals or a normal quantile plot of the residuals. If the plot is curved like a bow, the residuals are skewed - that is, they're not symmetrically/normally distributed. If the plot makes an S, that means there's errors at the residuals' extremes, and many of them.
+
+[Testing the assumptions of linear regression](http://people.duke.edu/~rnau/testing.htm)
+
+[R's acf function](https://www.rdocumentation.org/packages/stats/versions/3.1.1/topics/acf)
+
+# "Normal Equations"
+
+Best explanation ever!
+
+https://medium.com/@andrew.chamberlain/the-linear-algebra-view-of-least-squares-regression-f67044b7f39b
