@@ -118,3 +118,25 @@ There are five Gauss Markov assumptions (also called conditions):
 Best explanation ever!
 
 https://medium.com/@andrew.chamberlain/the-linear-algebra-view-of-least-squares-regression-f67044b7f39b
+
+
+
+# RE: What is the golden standard to validate statistic models?
+
+### Charles Meyers 
+
+There isn't one.  It depends entirely on what you want to do.
+
+If you want to minimize error: RMSE
+
+If you want to maximize explained variance: R^2
+
+If you want to minimize the model complexity: AIC
+
+F-score is for classification problems and is the "harmonic" average of precision and recall. It is an approximate measure of how good your classifier is at getting the right classification consistently.
+
+Sensitivity has many meanings. In classification, it refers to how many relevant items are correctly labeled. Specificity measures the number of false positives divided by the number of true negatives. These are also known as precision and recall.
+
+In multivariate calculus and differential models, sensitivity also refers to the amount y changes when you have a small change in x. This is a measure of how important 'x' is to the model.
+
+Since you can't measure residuals for classification, RMSE and R^2 aren't much help there. Since you don't apply labels with regression, the classification measures make no sense.
